@@ -1,0 +1,88 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-29 18:17+0200\n"
+"PO-Revision-Date: 2021-05-30 09:12+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+
+#: 1__init__.py:53
+msgid "Cut selected item to clipboard, if appropriate."
+msgstr "Cut selected item to clipboard, if appropriate."
+
+#: 1__init__.py:63
+msgid "Copy selected item to clipboard, if appropriate."
+msgstr "Copy selected item to clipboard, if appropriate."
+
+#: 1__init__.py:73
+msgid "Paste item from clipboard, if appropriate."
+msgstr "Paste item from clipboard, if appropriate."
+
+#: 1__init__.py:83
+msgid "Undo operation."
+msgstr "Undo operation."
+
+#: 1__init__.py:93
+msgid "Redo operation."
+msgstr "Redo operation."
+
+#: 1__init__.py:103
+msgid "Select all."
+msgstr "Select all."
+
+#: 1__init__.py:156
+msgid "text"
+msgstr "text"
+
+#: 1__init__.py:161
+msgid "file"
+msgstr "file"
+
+#: 1__init__.py:166
+msgid "item"
+msgstr "item"
+
+#: 1__init__.py:174
+msgid "Undo"
+msgstr "Undo"
+
+#: 1__init__.py:179
+msgid "Redo"
+msgstr "Redo"
+
+#: 1__init__.py:184
+msgid "Select All"
+msgstr "Select All"
+
+#: 1__init__.py:189
+#, python-format
+msgid "Cut %s"
+msgstr "Cut %s"
+
+#: 1__init__.py:195
+msgid "No change."
+msgstr "No change."
+
+#: 1__init__.py:199
+#, python-format
+msgid "Copy %s"
+msgstr "Copy %s"
+
+#: 1__init__.py:204
+#, python-format
+msgid "Pasted %s"
+msgstr "Pasted %s"
+
+#: 1__init__.py:273
+msgid "Clipboard"
+msgstr "Clipboard"
