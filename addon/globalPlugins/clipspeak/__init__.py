@@ -27,7 +27,7 @@ else:
 
 from . import clipboard_monitor
 # For update process
-from . update import *
+from .update import *
 import addonHandler
 addonHandler.initTranslation()
 
@@ -52,31 +52,6 @@ cm_undo=4
 cm_redo=5
 
 # Defining variables on NVDA.INI
-def initConfiguration():
-	global announcement
-	try:
-		value = config.conf[ourAddon.manifest["name"]]["announce"]
-	except KeyError:
-		config.conf[ourAddon.manifest["name"]] = {}
-		config.conf[ourAddon.manifest["name"]]["announce"] = "boolean(default=True)"
-		announcement = getConfig("announce")
-	else:
-		value = config.conf[ourAddon.manifest["name"]]["announce"]
-		announcement = True if value == "True" else False
-
-# Reading value of variable in NVDA.ini
-def getConfig(key):
-	value = config.conf[ourAddon.manifest["name"]][key]
-	return bool(value)
-
-# Saving value in NVDA.ini
-def setConfig(key, value):
-	try:
-		config.conf.profiles[0][ourAddon.manifest["name"]][key] = value
-	except:
-		config.conf[ourAddon.manifest["name"]][key] = value
-
-initConfiguration()
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):	
 	# Creating the constructor of the newly created GlobalPlugin class.
@@ -234,7 +209,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			word=_("item")
 
 		# Decide what will be announced...
-		if announcement == True:
+		if config.conf[ourAddon.name]["announce"]:
 			word = word1 = ""
 
 		# Validate and speak.
@@ -359,23 +334,15 @@ class ClipSpeakSettingsPanel(gui.SettingsPanel):
 
 		# Translators: Checkbox name in the configuration dialog
 		self.announceWnd = sHelper.addItem(wx.CheckBox(self, label=_("Announce only copy/cut/paste")))
-		self.announceWnd.Bind(wx.EVT_CHECKBOX, self.onChk2)
-		global announcement
-		self.announceWnd.Value = announcement
+		self.announceWnd.SetValue(config.conf[ourAddon.name]["announce"])
 
 		# Translators: Checkbox name in the configuration dialog
 		self.shouldUpdateChk = sHelper.addItem(wx.CheckBox(self, label=_("Check for updates at startup")))
-		self.shouldUpdateChk	.Bind(wx.EVT_CHECKBOX, self.onChk)
-		self.shouldUpdateChk	.Value = shouldUpdate
-
-	def onChk(self, event):
-		shouldUpdate = self.shouldUpdateChk.Value
-
-	def onChk2(self, event):
-		global announcement
-		announcement = self.announceWnd.Value
+		self.shouldUpdateChk.SetValue(config.conf[ourAddon.name]["isUpgrade"])
+		if config.conf.profiles[-1].name:
+			self.shouldUpdateChk.Disable()
 
 	def onSave (self):
-		setConfig("isUpgrade", self.shouldUpdateChk.Value)
-		setConfig("announce", self.announceWnd.Value)
-
+		config.conf[ourAddon.name]["announce"] = self.announceWnd.GetValue()
+		if not config.conf.profiles[-1].name:
+			config.conf[ourAddon.name]["isUpgrade"] = self.shouldUpdateChk.GetValue()
