@@ -410,4 +410,3 @@ class ClipSpeakSettingsPanel(gui.SettingsPanel):
 		config.conf[ourAddon.name]["announce"] = self.announceWnd.GetValue()
 		if not config.conf.profiles[-1].name:
 			config.conf[ourAddon.name]["isUpgrade"] = self.shouldUpdateChk.GetValue()
-
