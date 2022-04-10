@@ -36,31 +36,21 @@ import shutil
 addonHandler.initTranslation()
 
 def getOurAddon():
-	for addon in addonHandler.getAvailableAddons():
-		if str(os.path.dirname(__file__).split("\\")[-1:]).replace("[", "").replace("\'", "").replace("]", "") == addon.manifest['name']:
-			return addon
+	return addonHandler.getCodeAddon()
 
 ourAddon = getOurAddon()
 bundle = getOurAddon()
 
 def initConfiguration():
 	confspec = {
-		"isUpgrade": "boolean(default=False)",
+		"announce": "boolean(default=True)",
+		"isUpgrade": "boolean(default=False)"
 	}
-	config.conf.spec[ourAddon.manifest["name"]] = confspec
+	config.conf.spec[ourAddon.name] = confspec
 
-def getConfig(key):
-	value = config.conf[str(ourAddon.manifest["name"])][key]
-	return value
-
-def setConfig(key, value):
-	try:
-		config.conf.profiles[0][ourAddon.manifest["name"]][key] = value
-	except:
-		config.conf[ourAddon.manifest["name"]][key] = value
 
 initConfiguration()
-shouldUpdate = getConfig("isUpgrade")
+shouldUpdate = config.conf[ourAddon.name]["isUpgrade"]
 urlRepos = "https://api.github.com/repos/ruifontes/"+ourAddon.manifest["name"]+"/releases"
 urlName = ""
 urlN = ""
