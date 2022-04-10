@@ -27,7 +27,7 @@ else:
 
 from . import clipboard_monitor
 # For update process
-from . update import *
+from .update import *
 import addonHandler
 addonHandler.initTranslation()
 
@@ -40,6 +40,7 @@ cc_read_only_text=2
 cc_file=3
 cc_list=4
 cc_other=5
+cc_file1=6
 
 # Clipboard mode: What are we doing?
 cm_none=0
@@ -51,32 +52,9 @@ cm_paste=3
 cm_undo=4
 cm_redo=5
 
-# Defining variables on NVDA.INI
-def initConfiguration():
-	global announcement
-	try:
-		value = config.conf[ourAddon.manifest["name"]]["announce"]
-	except KeyError:
-		config.conf[ourAddon.manifest["name"]] = {}
-		config.conf[ourAddon.manifest["name"]]["announce"] = "boolean(default=True)"
-		announcement = getConfig("announce")
-	else:
-		value = config.conf[ourAddon.manifest["name"]]["announce"]
-		announcement = True if value == "True" else False
+cc_last_flag = ""
+cc_last_flag_1 = ""
 
-# Reading value of variable in NVDA.ini
-def getConfig(key):
-	value = config.conf[ourAddon.manifest["name"]][key]
-	return bool(value)
-
-# Saving value in NVDA.ini
-def setConfig(key, value):
-	try:
-		config.conf.profiles[0][ourAddon.manifest["name"]][key] = value
-	except:
-		config.conf[ourAddon.manifest["name"]][key] = value
-
-initConfiguration()
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):	
 	# Creating the constructor of the newly created GlobalPlugin class.
@@ -217,14 +195,17 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		log.debug("Finding appropriate message for clipboard content type: %r"%cc_flag)
 		if cc_flag==cc_none:
 			return
-		elif cc_flag == cc_text:
+		if cc_flag == cc_text:
 			# Pick a word suitable to the content.
-			text = api.getClipData()
-			if len(text) < 500:
-				text = text
-			else:
-				text = _("%s characters")%len(text)
-			word1 = _(text)
+			try:
+				text = api.getClipData()
+				if len(text) < 500:
+					text = text
+				else:
+					text = _("%s characters")%len(text)
+				word1 = _(text)
+			except:
+				pass #text = ""
 		elif cc_flag==cc_file:
 			# Translators: A single word representing a file.
 			word=_("file")
@@ -234,7 +215,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			word=_("item")
 
 		# Decide what will be announced...
-		if announcement == True:
+		if config.conf[ourAddon.name]["announce"]:
 			word = word1 = ""
 
 		# Validate and speak.
@@ -255,6 +236,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			else:
 				# Translators: A message to speak when cutting an item to the clipboard.
 				ui.message(_("Cut %s")%word)
+			if cc_flag == cc_file1:
+				pass
 
 		if cm_flag==cm_copy and self.can_copy(cc_flag):
 			if cc_flag == cc_text:
@@ -263,6 +246,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			else:
 				# Translators: A message spoken when copying to the clipboard.
 				ui.message(_("Copy %s")%word)
+			if cc_flag == cc_file1:
+				pass
 
 		if cm_flag==cm_paste and self.can_paste(cc_flag):
 			if cc_flag == cc_text:
@@ -273,8 +258,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				ui.message(_("Pasted %s")%word)
 
 	def examine_focus(self):
+		global cc_last_flag, cc_last_flag_1
+		cc_last_flag_1 = cc_last_flag
 		focus=api.getFocusObject()
 		if not focus:
+			cc_last_flag = cc_none
 			return cc_none
 		log.debug("Examining focus object: %r"%focus)
 		# Retrieve the control's states and roles.
@@ -282,32 +270,47 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 		# Check for an explorer/file browser window.
 		# Todo: Is this an accurate method?
-		if (focus.windowClassName == "DirectUIHWND") and controlTypes.STATE_SELECTED in states:
-			return cc_file
+		if (focus.windowClassName == "DirectUIHWND"):
+			if  controlTypes.STATE_SELECTED in states:
+				cc_last_flag = cc_file
+				return cc_file
+			elif  controlTypes.STATE_SELECTABLE in states:
+				cc_last_flag = cc_file1
+				return cc_file1
 
 		# Check for a list item.
 		elif (focus.role == controlTypes.ROLE_LISTITEM or controlTypes.ROLE_TABLEROW) and controlTypes.STATE_SELECTED in states:
+			cc_last_flag = cc_list
 			return cc_list
 
 		# Check if we're looking at text.
 		elif (controlTypes.STATE_EDITABLE or controlTypes.STATE_MULTILINE) in states:
 			if controlTypes.STATE_READONLY in states:
+				cc_last_flag = cc_read_only_text
 				return cc_read_only_text
 			else:
 				# Otherwise, we're just an ordinary text field.
 				log.debug("Field seems to be editable.")
+				cc_last_flag = cc_text
 				return cc_text
 
 		# For some reason, not all controls have an editable state, even when they clearly are.
 		elif focus.role==controlTypes.ROLE_EDITABLETEXT:
-			return cc_text
-		elif controlTypes.STATE_READONLY in states:
-			return cc_read_only_text
+			if controlTypes.STATE_READONLY in states:
+				cc_last_flag = cc_read_only_text
+				return cc_read_only_text
+			else:
+				# Otherwise, we're just an ordinary text field.
+				log.debug("Field seems to be editable.")
+				cc_last_flag = cc_text
+				return cc_text
 		elif focus.windowClassName == "RichEditD2DPT":
+			cc_last_flag = cc_text
 			return cc_text
 		# Todo: Other control types we need to check?
 		else:
 			log.debug("Control type would not suggest clipboard operations.")
+			cc_last_flag = cc_none
 			return cc_none
 
 	# Validation functions: In case we need to extend the script to allow more control/window types etc.
@@ -326,20 +329,56 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		if cc_flag==cc_read_only_text:
 			return False
 		# Todo: Validate the control and make sure there is something that could potentially be cut.
+		if cc_last_flag == cc_file1:
+			return False
 		return True
 
 	def can_copy(self, cc_flag):
 		# Todo: Validate the control and make sure there is something that could potentially be copied.
+		if cc_last_flag == cc_file1:
+			return False
 		return True
 
 	def can_paste(self, cc_flag):
-		if cc_flag==cc_read_only_text:
+		global cc_last_flag, cc_last_flag_1
+		focus=api.getFocusObject()
+		states=focus.states
+		if cc_last_flag_1 == cc_none:
+			cc_flag = cc_none
+			return False
+		elif cc_last_flag_1 == cc_text:
+			cc_flag = cc_text
+			# Check if we're looking at text.
+			if (controlTypes.STATE_EDITABLE or controlTypes.STATE_MULTILINE) in states:
+				if controlTypes.STATE_READONLY in states:
+					return False
+				else:
+					# Otherwise, we're just an ordinary text field.
+					log.debug("Field seems to be editable.")
+					return True
+			# For some reason, not all controls have an editable state, even when they clearly are.
+			elif focus.role==controlTypes.ROLE_EDITABLETEXT:
+				return True
+			elif controlTypes.STATE_READONLY in states:
+				return False
+			elif focus.windowClassName == "RichEditD2DPT":
+				return True
+
+		elif cc_last_flag_1 == (cc_file or cc_file1):
+			cc_flag = cc_file
+			# Check for an explorer/file browser window.
+			# Todo: Is this an accurate method?
+			if focus.windowClassName == "DirectUIHWND":
+				if  (focus.role==controlTypes.ROLE_LISTITEM) and controlTypes.STATE_SELECTABLE in states:
+					return True
+				return False
 			return False
 
-		log.debug("Checking clipboard.")
-		if not self.__clipboard.valid_data():
-			return False
-		return True
+		elif cc_last_flag_1 == cc_list:
+			# Check for a list item.
+			if (focus.role == controlTypes.ROLE_LISTITEM or controlTypes.ROLE_TABLEROW) and controlTypes.STATE_SELECTED in states:
+				cc_flag = cc_list
+				return True
 
 	# Define an object of type clipboard_monitor that will keep track of the clipboard for us.
 	__clipboard = clipboard_monitor.clipboard_monitor()
@@ -359,23 +398,16 @@ class ClipSpeakSettingsPanel(gui.SettingsPanel):
 
 		# Translators: Checkbox name in the configuration dialog
 		self.announceWnd = sHelper.addItem(wx.CheckBox(self, label=_("Announce only copy/cut/paste")))
-		self.announceWnd.Bind(wx.EVT_CHECKBOX, self.onChk2)
-		global announcement
-		self.announceWnd.Value = announcement
+		self.announceWnd.SetValue(config.conf[ourAddon.name]["announce"])
 
 		# Translators: Checkbox name in the configuration dialog
 		self.shouldUpdateChk = sHelper.addItem(wx.CheckBox(self, label=_("Check for updates at startup")))
-		self.shouldUpdateChk	.Bind(wx.EVT_CHECKBOX, self.onChk)
-		self.shouldUpdateChk	.Value = shouldUpdate
-
-	def onChk(self, event):
-		shouldUpdate = self.shouldUpdateChk.Value
-
-	def onChk2(self, event):
-		global announcement
-		announcement = self.announceWnd.Value
+		self.shouldUpdateChk.SetValue(config.conf[ourAddon.name]["isUpgrade"])
+		if config.conf.profiles[-1].name:
+			self.shouldUpdateChk.Disable()
 
 	def onSave (self):
-		setConfig("isUpgrade", self.shouldUpdateChk.Value)
-		setConfig("announce", self.announceWnd.Value)
+		config.conf[ourAddon.name]["announce"] = self.announceWnd.GetValue()
+		if not config.conf.profiles[-1].name:
+			config.conf[ourAddon.name]["isUpgrade"] = self.shouldUpdateChk.GetValue()
 

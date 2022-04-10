@@ -19,9 +19,9 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description" : _("""Add-on to speak clipboard information."""),
 	# version
-	"addon_version" : "2022.03",
+	"addon_version" : "2022.04",
 	# Author(s)
-	"addon_author" : "Rui Fontes, Ângelo Abrantes and Abel Passos Júnior, based on the work of Damien Sykes-Lindley",
+	"addon_author" : "Rui Fontes, Ângelo Abrantes, Abel Passos Júnior and colaboration of Noelia Ruiz Martínez, based on the work of Damien Sykes-Lindley",
 	# URL for the add-on documentation support
 	"addon_url" : "https://github.com/ruifontes/clipspeak",
 	# Documentation file name
