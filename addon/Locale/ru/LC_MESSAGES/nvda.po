@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 'clipspeak' '2022.04'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2022-03-26 23:45+0000\n"
-"PO-Revision-Date: 2022-05-14 16:03+0300\n"
+"PO-Revision-Date: 2022-06-06 23:01+0200\n"
 "Last-Translator: Group of Ukrainian blind people\n"
 "Language-Team: Ukrainian Language Team\n"
 "Language: ru\n"
@@ -20,118 +20,93 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. For translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:107
 msgid "Cut selected item to clipboard, if appropriate."
 msgstr "Вырезать выделенный элемент в буфер обмена, если поддерживается."
 
 #. For translators: Name of the section in "Input gestures" dialog.
-#: addon\globalPlugins\clipspeak\__init__.py:109
-#: addon\globalPlugins\clipspeak\__init__.py:123
-#: addon\globalPlugins\clipspeak\__init__.py:137
-#: addon\globalPlugins\clipspeak\__init__.py:151
-#: addon\globalPlugins\clipspeak\__init__.py:165
 msgid "Clipboard"
 msgstr "Буфер обмена"
 
 #. For translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:121
 msgid "Copy selected item to clipboard, if appropriate."
 msgstr ""
 "Скопировать выделенный элемент в буфер обмена, если поддерживается."
 
 #. For translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:135
 msgid "Paste item from clipboard, if appropriate."
 msgstr "Вставить элемент с буфера обмена, если поддерживается."
 
 #. For translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:149
 msgid "Undo operation."
 msgstr "Отменить действие."
 
 #. For translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:163
 msgid "Redo operation."
 msgstr "Повторить действие."
 
-#: addon\globalPlugins\clipspeak\__init__.py:226
 #, python-format
 msgid "%s characters"
 msgstr "%s символов"
 
 #. Translators: A single word representing a file.
-#: addon\globalPlugins\clipspeak\__init__.py:230
 msgid "file"
 msgstr "файл"
 
 #. Translators: A single word representing an item in a list.
-#: addon\globalPlugins\clipspeak\__init__.py:234
 msgid "item"
 msgstr "элемент"
 
 #. Translators: Message to speak when undoing.
-#: addon\globalPlugins\clipspeak\__init__.py:245
 msgid "Undo"
 msgstr "Отменить"
 
 #. Translators: A message spoken when redoing a previously undone operation.
-#: addon\globalPlugins\clipspeak\__init__.py:249
 msgid "Redo"
 msgstr "Повторить"
 
 #. Translators: A message to speak when cutting text to the clipboard.
-#: addon\globalPlugins\clipspeak\__init__.py:254
 #, python-format
 msgid "Cut: %s"
 msgstr "Вырезан: %s"
 
 #. Translators: A message to speak when cutting an item to the clipboard.
-#: addon\globalPlugins\clipspeak\__init__.py:257
 #, python-format
 msgid "Cut %s"
 msgstr "Вырезан %s"
 
 #. Translators: A message spoken when copying text to the clipboard.
-#: addon\globalPlugins\clipspeak\__init__.py:262
 #, python-format
 msgid "Copy: %s"
 msgstr "Скопирован: %s"
 
 #. Translators: A message spoken when copying to the clipboard.
-#: addon\globalPlugins\clipspeak\__init__.py:265
 #, python-format
 msgid "Copy %s"
 msgstr "Скопирован %s"
 
 #. Translators: A message spoken when pasting text from the clipboard.
-#: addon\globalPlugins\clipspeak\__init__.py:270
 #, python-format
 msgid "Pasted: %s"
 msgstr "Вставлен: %s"
 
 #. Translators: A message spoken when pasting from the clipboard.
-#: addon\globalPlugins\clipspeak\__init__.py:273
 #, python-format
 msgid "Pasted %s"
 msgstr "Вставлен %s"
 
 #. Translators: Title of the ClipSpeak settings dialog in the NVDA settings.
-#: addon\globalPlugins\clipspeak\__init__.py:355
 msgid "ClipSpeak"
 msgstr ""
 
 #. Translators: Checkbox name in the configuration dialog
-#: addon\globalPlugins\clipspeak\__init__.py:361
 msgid "Announce only copy/cut/paste"
 msgstr "Проговаривать только скопирован/вырезан/вставлен"
 
 #. Translators: Checkbox name in the configuration dialog
-#: addon\globalPlugins\clipspeak\__init__.py:367
 msgid "Check for updates at startup"
 msgstr "Проверять наличие обновлений при старте"
 
 #. Translators: Message dialog box to ask user if wants to update.
-#: addon\globalPlugins\clipspeak\update.py:93
 msgid ""
 "It is available a new version of this add-on.\n"
 " Do you want to update?"
@@ -140,7 +115,6 @@ msgstr ""
 "Вы хотите обновить?"
 
 #. Translators: Message dialog box to inform user that the add-on is not compatible
-#: addon\globalPlugins\clipspeak\update.py:128
 msgid ""
 "This new version of this add-on is not compatible with your version of "
 "NVDA.\n"
@@ -151,12 +125,10 @@ msgstr ""
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown on installation and add-on information.
-#: buildVars.py:17
 msgid "Clipspeak"
 msgstr ""
 
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
-#: buildVars.py:20
 msgid "Add-on to speak clipboard information."
 msgstr "Дополнение, произносящее информацию для буфера обмена."
