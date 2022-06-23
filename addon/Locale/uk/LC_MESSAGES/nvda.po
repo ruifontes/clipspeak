@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 'clipspeak' '2022.04'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2022-06-22 09:43+0300\n"
-"PO-Revision-Date: 2022-06-22 10:39+0300\n"
+"PO-Revision-Date: 2022-06-23 13:05+0300\n"
 "Last-Translator: Group of Ukrainian blind people\n"
 "Language-Team: Ukrainian Language Team\n"
 "Language: uk_UA\n"
@@ -68,7 +68,7 @@ msgstr "елемент"
 
 #: addon/globalPlugins/clipspeak/__init__.py:226
 msgid "Undo"
-msgstr "Скасувати"
+msgstr "Скасовано"
 
 #: addon/globalPlugins/clipspeak/__init__.py:230
 msgid "Redo"
@@ -77,22 +77,22 @@ msgstr "Повторити"
 #: addon/globalPlugins/clipspeak/__init__.py:235
 #, python-format
 msgid "Cut: %s"
-msgstr "Вирізати: %s"
+msgstr "Вирізано: %s"
 
 #: addon/globalPlugins/clipspeak/__init__.py:238
 #, python-format
 msgid "Cut %s"
-msgstr "Вирізати %s"
+msgstr "Вирізано %s"
 
 #: addon/globalPlugins/clipspeak/__init__.py:245
 #, python-format
 msgid "Copy: %s"
-msgstr "Скопіювати: %s"
+msgstr "Скопійовано: %s"
 
 #: addon/globalPlugins/clipspeak/__init__.py:248
 #, python-format
 msgid "Copy %s"
-msgstr "Скопіювати %s"
+msgstr "Скопійовано %s"
 
 #: addon/globalPlugins/clipspeak/__init__.py:255
 #, python-format
@@ -110,7 +110,7 @@ msgstr "Озвучення операцій з буфером обміну"
 
 #: addon/globalPlugins/clipspeak/__init__.py:400
 msgid "Announce only copy/cut/paste"
-msgstr "Промовляти лише скопіювати/вирізати/вставити"
+msgstr "Промовляти лише скопійовано/вирізано/вставлено"
 
 #: addon/globalPlugins/clipspeak/__init__.py:404
 msgid "Check for updates at startup"
