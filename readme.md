@@ -3,7 +3,7 @@
 
 ## Informations
 * Authors: "Rui Fontes, Ângelo Abrantes, Abel Passos Júnior and colaboration of Noelia Ruiz Martínez, based on the work of Damien Sykes-Lindley
-* Updated in 05/03/2023
+* Updated in 09/03/2023
 * Download [stable version][1]
 * Compatibility: NVDA version 2019.3 and beyond
 
@@ -27,4 +27,4 @@ This add-on includes an automatic update feature.
 The check for a new version will be executed everytime NVDA is loaded.
 If you want this, go to NVDA, Preferences, Options and in the add-on category check the check box.
 
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2023.03/clipspeak-2023.03.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2023.03.09/clipspeak-2023.03.09.nvda-addon

@@ -184,7 +184,14 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				log.debug("This gesture is already handled elsewhere. Executing associated function.")
 				func(tree)
 				return True
-
+		else: 
+			log.debug("Tree interceptor not in use. Checking the NVDA object.") 
+			func = scriptHandler._getObjScript(focus, gesture, scripts) 
+			log.debug(f"Examining object: {func}") 
+			if func: 
+				log.debug("This gesture is already handled elsewhere. Executing associated function.") 
+				func(focus) 
+				return True 
 		log.debug("Nothing associated here. Pass straight to the system.")
 		gesture.send()
 		return False
@@ -195,7 +202,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		log.debug("Finding appropriate message for clipboard content type: %r"%cc_flag)
 		if cc_flag==cc_none:
 			return
-		if cc_flag == cc_text:
+		elif cc_flag == cc_text:
 			# Pick a word suitable to the content.
 			try:
 				text = api.getClipData()
@@ -279,7 +286,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				return cc_file1
 
 		# Check for a list item.
-		elif (focus.role == controlTypes.ROLE_LISTITEM or controlTypes.ROLE_TABLEROW) and controlTypes.STATE_SELECTED in states:
+		elif focus.role == (controlTypes.ROLE_LISTITEM or controlTypes.ROLE_TABLEROW) and controlTypes.STATE_SELECTED in states:
 			cc_last_flag = cc_list
 			return cc_list
 
@@ -295,7 +302,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				return cc_text
 
 		# For some reason, not all controls have an editable state, even when they clearly are.
-		elif focus.role==controlTypes.ROLE_EDITABLETEXT:
+		elif focus.role == controlTypes.ROLE_EDITABLETEXT:
 			if controlTypes.STATE_READONLY in states:
 				cc_last_flag = cc_read_only_text
 				return cc_read_only_text
@@ -305,6 +312,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				cc_last_flag = cc_text
 				return cc_text
 		elif focus.windowClassName == "RichEditD2DPT":
+			cc_last_flag = cc_text
+			return cc_text
+		elif focus.windowClassName == "_WwG":
+			if api.getFocusObject().appModule.appName == "winword":
+				cc_last_flag = cc_read_only_text
+				return cc_read_only_text
 			cc_last_flag = cc_text
 			return cc_text
 		# Todo: Other control types we need to check?
@@ -357,11 +370,16 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					log.debug("Field seems to be editable.")
 					return True
 			# For some reason, not all controls have an editable state, even when they clearly are.
-			elif focus.role==controlTypes.ROLE_EDITABLETEXT:
-				return True
+			elif focus.role == controlTypes.ROLE_EDITABLETEXT:
+				if controlTypes.STATE_READONLY in states:
+					return False
+				else:
+					return True
 			elif controlTypes.STATE_READONLY in states:
 				return False
 			elif focus.windowClassName == "RichEditD2DPT":
+				return True
+			elif focus.windowClassName == "_WwG":
 				return True
 
 		elif cc_last_flag_1 == (cc_file or cc_file1):
@@ -410,3 +428,4 @@ class ClipSpeakSettingsPanel(gui.SettingsPanel):
 		config.conf[ourAddon.name]["announce"] = self.announceWnd.GetValue()
 		if not config.conf.profiles[-1].name:
 			config.conf[ourAddon.name]["isUpgrade"] = self.shouldUpdateChk.GetValue()
+

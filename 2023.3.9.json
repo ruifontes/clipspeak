@@ -1,15 +1,15 @@
 {
 	"addonId": "clipspeak",
 	"displayName": "Clipspeak",
-	"URL": "https://github.com/ruifontes/clipspeak/releases/download/2023.03/clipspeak-2023.03.nvda-addon",
+	"URL": "",
 	"description": "Add-on to speak clipboard information.",
-	"sha256": "ccfb5cb1b7659e5ab4cad02c3aeb79921b18c414e80860918e2d3a71b8972796",
+	"sha256": "baf582d3da36704d2d1a9a43b26ecec2738b8fa83e8cbd71f7d738d24767e31b",
 	"homepage": "https://github.com/ruifontes/clipspeak",
-	"addonVersionName": "2023.03",
+	"addonVersionName": "2023.03.09",
 	"addonVersionNumber": {
 		"major": 2023,
 		"minor": 3,
-		"patch": 0
+		"patch": 9
 	},
 	"minNVDAVersion": {
 		"major": 2019,
@@ -22,7 +22,7 @@
 		"patch": 0
 	},
 	"channel": "stable",
-	"publisher": "Rui Fontes",
+	"publisher": "",
 	"sourceURL": "https://github.com/ruifontes/clipspeak",
 	"license": "GPL 2",
 	"licenseURL": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"

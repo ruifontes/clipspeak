@@ -3,7 +3,7 @@
 
 ## bilgiler
 * Yazarlar: "Rui Fontes, Ângelo Abrantes, Abel Passos Júnior ve Noelia Ruiz Martínez'in işbirliği, Damien Sykes-Lindley'in çalışmasına dayanmaktadır.
-* 05/03/2023'de güncellendi
+* 09/03/2023'de güncellendi
 * [Kararlı sürümü indirin][1]
 * Uyumluluk: NVDA sürüm 2019.3 ve sonrası.
 
@@ -28,4 +28,4 @@ Bu eklenti bir otomatik güncelleme özelliği içerir.
 NVDA her açıldığında yeni bir sürüm kontrolü gerçekleştirilecektir.  
 Bunu istiyorsanız, NVDA, Tercihler, Seçenekler'e gidin ve eklenti kategorisinde onay kutusunu işaretleyin.  
 
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2023.03/clipspeak-2023.03.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2023.03.09/clipspeak-2023.03.09.nvda-addon

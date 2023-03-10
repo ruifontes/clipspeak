@@ -3,7 +3,7 @@
 
 ## Інформація
 * Автори: "Rui Fontes, Ângelo Abrantes, Abel Passos Júnior and colaboration of Noelia Ruiz Martínez, based on the work of Damien Sykes-Lindley
-* Оновлено in 10/04/2022
+* Оновлено 05/03/2023
 * Завантажити [стабільну версію][1]
 * Сумісність: NVDA 2019.3 і новіші
 
@@ -27,5 +27,5 @@ Clipspeak — це додаток, який дозволяє NVDA автомат
 Перевірка нової версії відбувається щоразу при кожному запуску NVDA.
 Якщо ви бажаєте використовувати цю функцію, увійдіть до меню NVDA, «Параметри», «Налаштування» і в категорії додатка позначте відповідний прапорець.
 
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2022.04/clipspeak-2022.04.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2023.03.09/clipspeak-2023.03.09.nvda-addon
 

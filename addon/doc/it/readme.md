@@ -3,7 +3,7 @@
 
 ## Informazioni
 * Autori: "Rui Fontes, Ângelo Abrantes, Abel Passos Júnior e la collaborazione di Noelia Ruiz Martínez, basato sul lavoro di Damien Sykes-Lindley
-* Aggiornato il 05/03/2023
+* Aggiornato il 09/03/2023
 * Download [versione stabile][1]
 * Compatibilità: NVDA versione 2019.3 e successive
 
@@ -27,4 +27,4 @@ Il controllo sarà eseguito ogni volta che NVDA verrà avviato.
 If you want this, go to NVDA, Preferences, Options and in the add-on category check the check box.
 Se si vuole attivare questa funzione, andare in NVDA, Preferenze, Impostazioni, cercare il nome del componente, quindi attivare la relativa casella di controllo.
 
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2023.03/clipspeak-2023.03.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2023.03.09/clipspeak-2023.03.09.nvda-addon
