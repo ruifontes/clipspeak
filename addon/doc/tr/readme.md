@@ -3,7 +3,7 @@
 
 ## bilgiler
 * Yazarlar: "Rui Fontes, Ângelo Abrantes, Abel Passos Júnior ve Noelia Ruiz Martínez'in işbirliği, Damien Sykes-Lindley'in çalışmasına dayanmaktadır.
-* 09/03/2023'de güncellendi
+* 16/05/2023'de güncellendi
 * [Kararlı sürümü indirin][1]
 * Uyumluluk: NVDA sürüm 2019.3 ve sonrası.
 
@@ -23,9 +23,4 @@ Varsayılan olarak Panoyu seslendir'in hareketleri, Windows'un İngilizce sürü
 Windows sürümünüzde bu görevler için yaygın olarak kullanılan kısayollar bunlar değilse, Pano kategorisi altındaki giriş hareketleri yapılandırmasında bu hareketleri yeniden eşleştirmeniz gerekir.  
 
 
-## Otomatik güncelleme:
-Bu eklenti bir otomatik güncelleme özelliği içerir.  
-NVDA her açıldığında yeni bir sürüm kontrolü gerçekleştirilecektir.  
-Bunu istiyorsanız, NVDA, Tercihler, Seçenekler'e gidin ve eklenti kategorisinde onay kutusunu işaretleyin.  
-
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2023.03.09/clipspeak-2023.03.09.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2023.05.16/clipspeak-2023.05.16.nvda-addon

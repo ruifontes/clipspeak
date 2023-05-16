@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Panoyu Seslendir 2022.04\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2022-03-26 23:45+0000\n"
-"PO-Revision-Date: 2022-05-23 22:52+0300\n"
+"POT-Creation-Date: 2023-05-16 15:32+0100\n"
+"PO-Revision-Date: 2023-05-16 18:01+0100\n"
 "Last-Translator: Umut KORKMAZ <umutkork@gmail.com>\n"
 "Language-Team: Umut KORKMAZ <umutkork@gmail.com>\n"
 "Language: tr_TR\n"
@@ -11,146 +11,156 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.3.1\n"
 "X-Poedit-Basepath: .\n"
 
-#. For translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:107
+#. Translators: Message to be announced during Keyboard Help
+#: addon\globalPlugins\clipspeak\__init__.py:75
 msgid "Cut selected item to clipboard, if appropriate."
 msgstr "Uygunsa, seçili öğeyi panoya kesin."
 
-#. For translators: Name of the section in "Input gestures" dialog.
-#: addon\globalPlugins\clipspeak\__init__.py:109
-#: addon\globalPlugins\clipspeak\__init__.py:123
-#: addon\globalPlugins\clipspeak\__init__.py:137
-#: addon\globalPlugins\clipspeak\__init__.py:151
-#: addon\globalPlugins\clipspeak\__init__.py:165
+#. Translators: Name of the section in "Input gestures" dialog.
+#: addon\globalPlugins\clipspeak\__init__.py:77
+#: addon\globalPlugins\clipspeak\__init__.py:91
+#: addon\globalPlugins\clipspeak\__init__.py:105
+#: addon\globalPlugins\clipspeak\__init__.py:119
+#: addon\globalPlugins\clipspeak\__init__.py:133
 msgid "Clipboard"
 msgstr "Pano"
 
-#. For translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:121
+#. Translators: Message to be announced during Keyboard Help
+#: addon\globalPlugins\clipspeak\__init__.py:89
 msgid "Copy selected item to clipboard, if appropriate."
 msgstr "Uygunsa, seçili öğeyi panoya kopyalayın."
 
-#. For translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:135
+#. Translators: Message to be announced during Keyboard Help
+#: addon\globalPlugins\clipspeak\__init__.py:103
 msgid "Paste item from clipboard, if appropriate."
 msgstr "Uygunsa, öğeyi panodan yapıştırın."
 
-#. For translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:149
+#. Translators: Message to be announced during Keyboard Help
+#: addon\globalPlugins\clipspeak\__init__.py:117
 msgid "Undo operation."
 msgstr "İşlemi geri al."
 
-#. For translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:163
+#. Translators: Message to be announced during Keyboard Help
+#: addon\globalPlugins\clipspeak\__init__.py:131
 msgid "Redo operation."
 msgstr "İşlemi yinele."
 
-#: addon\globalPlugins\clipspeak\__init__.py:226
+#. Announce only the number of characters since they are many...
+#: addon\globalPlugins\clipspeak\__init__.py:213
 #, python-format
 msgid "%s characters"
 msgstr "%s karakter"
 
 #. Translators: A single word representing a file.
-#: addon\globalPlugins\clipspeak\__init__.py:230
+#: addon\globalPlugins\clipspeak\__init__.py:217
 msgid "file"
 msgstr "dosya"
 
 #. Translators: A single word representing an item in a list.
-#: addon\globalPlugins\clipspeak\__init__.py:234
+#: addon\globalPlugins\clipspeak\__init__.py:220
 msgid "item"
 msgstr "öğe"
 
 #. Translators: Message to speak when undoing.
-#: addon\globalPlugins\clipspeak\__init__.py:245
+#: addon\globalPlugins\clipspeak\__init__.py:231
 msgid "Undo"
 msgstr "Geri al"
 
 #. Translators: A message spoken when redoing a previously undone operation.
-#: addon\globalPlugins\clipspeak\__init__.py:249
+#: addon\globalPlugins\clipspeak\__init__.py:234
 msgid "Redo"
 msgstr "Yinele"
 
 #. Translators: A message to speak when cutting text to the clipboard.
-#: addon\globalPlugins\clipspeak\__init__.py:254
-#, python-format
-msgid "Cut: %s"
-msgstr "Kes: %s"
-
 #. Translators: A message to speak when cutting an item to the clipboard.
-#: addon\globalPlugins\clipspeak\__init__.py:257
+#: addon\globalPlugins\clipspeak\__init__.py:238
+#: addon\globalPlugins\clipspeak\__init__.py:244
 #, python-format
 msgid "Cut %s"
 msgstr "%s kes"
 
 #. Translators: A message spoken when copying text to the clipboard.
-#: addon\globalPlugins\clipspeak\__init__.py:262
-#, python-format
-msgid "Copy: %s"
-msgstr "Kopyala: %s"
-
 #. Translators: A message spoken when copying to the clipboard.
-#: addon\globalPlugins\clipspeak\__init__.py:265
+#: addon\globalPlugins\clipspeak\__init__.py:249
+#: addon\globalPlugins\clipspeak\__init__.py:255
 #, python-format
 msgid "Copy %s"
 msgstr "%s kopyala"
 
 #. Translators: A message spoken when pasting text from the clipboard.
-#: addon\globalPlugins\clipspeak\__init__.py:270
-#, python-format
-msgid "Pasted: %s"
-msgstr "Yapıştırıldı: %s"
-
 #. Translators: A message spoken when pasting from the clipboard.
-#: addon\globalPlugins\clipspeak\__init__.py:273
+#: addon\globalPlugins\clipspeak\__init__.py:260
+#: addon\globalPlugins\clipspeak\__init__.py:263
 #, python-format
 msgid "Pasted %s"
 msgstr "%s yapıştırıldı"
 
 #. Translators: Title of the ClipSpeak settings dialog in the NVDA settings.
-#: addon\globalPlugins\clipspeak\__init__.py:355
+#: addon\globalPlugins\clipspeak\configPanel.py:33
 msgid "ClipSpeak"
 msgstr "Panoyu Seslendir"
 
 #. Translators: Checkbox name in the configuration dialog
-#: addon\globalPlugins\clipspeak\__init__.py:361
+#: addon\globalPlugins\clipspeak\configPanel.py:39
 msgid "Announce only copy/cut/paste"
 msgstr "Yalnızca kopyala/kes/yapıştır işlemlerini seslendir"
 
-#. Translators: Checkbox name in the configuration dialog
-#: addon\globalPlugins\clipspeak\__init__.py:367
-msgid "Check for updates at startup"
-msgstr "Başlangıçta güncellemeleri denetle"
-
-#. Translators: Message dialog box to ask user if wants to update.
-#: addon\globalPlugins\clipspeak\update.py:93
+#. Translators: message asking the user wether the clipboard announcements feature of NVDAExtensionGlobalPlugin should be disabled or not
+#: addon\installTasks.py:22
 msgid ""
-"It is available a new version of this add-on.\n"
-" Do you want to update?"
+"NVDAExtensionGlobalPlugin has been detected on your system. In order for "
+"Clipspeak to work without conflicts, this feature must be disabled. "
+"Otherwise Clipspeake will not work. Would you like to disable this feature "
+"now?"
 msgstr ""
-"Bu eklentinin yeni bir sürümü mevcut.\n"
-" Güncellemek ister misiniz?"
 
-#. Translators: Message dialog box to inform user that the add-on is not compatible
-#: addon\globalPlugins\clipspeak\update.py:128
-msgid ""
-"This new version of this add-on is not compatible with your version of "
-"NVDA.\n"
-" The update process will be terminated."
+#. Translators: question title
+#: addon\installTasks.py:24
+msgid "Running NVDAExtensionGlobalPlugin detected"
 msgstr ""
-"Bu eklentinin  yeni sürümü, NVDA sürümünüzle uyumlu değil.\n"
-" Güncelleme işlemi sonlandırılacak."
 
 #. Add-on summary, usually the user visible name of the addon.
-#. Translators: Summary for this add-on to be shown on installation and add-on information.
-#: buildVars.py:17
+#. Translators: Summary for this add-on
+#. to be shown on installation and add-on information found in Add-ons Manager.
+#: buildVars.py:23
 msgid "Clipspeak"
 msgstr "Panoyu Seslendir"
 
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
-#: buildVars.py:20
+#: buildVars.py:26
 msgid "Add-on to speak clipboard information."
 msgstr "Pano bilgilerini seslendirmek için eklenti."
+
+#, python-format
+#~ msgid "Cut: %s"
+#~ msgstr "Kes: %s"
+
+#, python-format
+#~ msgid "Copy: %s"
+#~ msgstr "Kopyala: %s"
+
+#, python-format
+#~ msgid "Pasted: %s"
+#~ msgstr "Yapıştırıldı: %s"
+
+#~ msgid "Check for updates at startup"
+#~ msgstr "Başlangıçta güncellemeleri denetle"
+
+#~ msgid ""
+#~ "It is available a new version of this add-on.\n"
+#~ " Do you want to update?"
+#~ msgstr ""
+#~ "Bu eklentinin yeni bir sürümü mevcut.\n"
+#~ " Güncellemek ister misiniz?"
+
+#~ msgid ""
+#~ "This new version of this add-on is not compatible with your version of "
+#~ "NVDA.\n"
+#~ " The update process will be terminated."
+#~ msgstr ""
+#~ "Bu eklentinin  yeni sürümü, NVDA sürümünüzle uyumlu değil.\n"
+#~ " Güncelleme işlemi sonlandırılacak."

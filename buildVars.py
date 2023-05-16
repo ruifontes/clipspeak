@@ -25,7 +25,7 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description": _("""Add-on to speak clipboard information."""),
 	# version
-	"addon_version": "2023.03.09",
+	"addon_version": "2023.05.16",
 	# Author(s)
 	"addon_author": "Rui Fontes, Ângelo Abrantes, Abel Passos Júnior and colaboration of Noelia Ruiz Martínez, based on the work of Damien Sykes-Lindley",
 	# URL for the add-on documentation support
