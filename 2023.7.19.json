@@ -3,13 +3,13 @@
 	"displayName": "Clipspeak",
 	"URL": "",
 	"description": "Add-on to speak clipboard information.",
-	"sha256": "71008aaa191fee841bcb62b2dccce8682425f70b801bbfdcbabfc363f1e353e1",
+	"sha256": "d07c0a3d6a9f4e9ba6321c93a1b59f04a2ef198f344883fe4f82f1aaf25a81b8",
 	"homepage": "https://github.com/ruifontes/clipspeak",
-	"addonVersionName": "2023.05.16",
+	"addonVersionName": "2023.07.19",
 	"addonVersionNumber": {
 		"major": 2023,
-		"minor": 5,
-		"patch": 16
+		"minor": 7,
+		"patch": 19
 	},
 	"minNVDAVersion": {
 		"major": 2019,

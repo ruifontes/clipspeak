@@ -3,7 +3,7 @@
 
 ## Informazioni
 * Autori: "Rui Fontes, Ângelo Abrantes, Abel Passos Júnior e la collaborazione di Noelia Ruiz Martínez, basato sul lavoro di Damien Sykes-Lindley
-* Aggiornato il 16/05/2023
+* Aggiornato il 19/07/2023
 * Download [versione stabile][1]
 * Compatibilità: NVDA versione 2019.3 e successive
 
@@ -21,4 +21,5 @@ Inizialmente, la mappatura delle gestures di ClipSpeak è quella della versione 
 
 Se questi tasti non corrispondono con la versione di Windows che si sta utilizzando, è possibile modificarle andando in gesti e tasti di immissione, categoria Appunti.
 
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2023.05.16/clipspeak-2023.05.16.nvda-addon
+## Aggiornamento automati
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2023.07.19/clipspeak-2023.07.19.nvda-addon

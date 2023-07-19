@@ -1,22 +1,25 @@
 # -*- coding: utf-8 -*-
-# Clipspeak - Add-on for announcement of clipboard operations
-# written by Rui Fontes <rui.fontes@tiflotecnia.com>, Ângelo Abrantes <ampa4374@gmail.com> and Abel Passos do Nascimento Jr. <abel.passos@gmail.com>
-# Based, since 26/03/2022, in the work of Damien Lindley Created in 19th April 2017
-# Copyright (C) 2022-2023 Rui Fontes <rui.fontes@tiflotecnia.com>
+# Clipspeak
+# An addon to monitor and speak messages relating to clipboard operations
+# By: Damien Lindley Created: 19th April 2017
+# Modified by Rui Fontes, Ângelo Miguel and Abel Júnior in 26/03/2022
 # This file is covered by the GNU General Public License.
 # See the file COPYING for more details.
 
-# Import the necessary modules
 import globalPluginHandler
-from . configPanel import *
-import api
+import globalVars
+import wx
+import gui
+from gui.settingsDialogs import NVDASettingsDialog, SettingsPanel
+from gui import guiHelper
 import ui
+import config
+import api
 import inputCore
 import scriptHandler
 from scriptHandler import script
 from logHandler import log
 import controlTypes
-# For compatibility with old NVDA versions
 if hasattr(controlTypes, "Role"):
 	for r in controlTypes.Role: setattr(controlTypes, r.__str__().replace("Role.", "ROLE_"), r)
 else:
@@ -27,13 +30,25 @@ if hasattr(controlTypes, "State"):
 else:
 	setattr(controlTypes, "State", type('Enum', (), dict([(x.split("STATE_")[1], getattr(controlTypes, x)) for x in dir(controlTypes) if x.startswith("STATE_")])))
 
-import time
-import textInfos
-
-# To start the translation process
+from . import clipboard_monitor
+import addonHandler
 addonHandler.initTranslation()
+from time import sleep
 
 # Constants:
+
+def getAddon():
+	return addonHandler.getCodeAddon()
+
+Addon = getAddon()
+def initConfiguration():
+	confspec = {
+		"announce": "boolean(default=True)",
+	}
+	config.conf.spec[Addon.name] = confspec
+
+initConfiguration()
+
 # Clipboard content: What are we working with?
 cc_none=0
 cc_text=1
@@ -42,15 +57,17 @@ cc_file=3
 cc_list=4
 cc_other=5
 cc_file1=6
+
 # Clipboard mode: What are we doing?
 cm_none=0
 cm_cut=1
 cm_copy=2
 cm_paste=3
+
 # Not strictly clipboard, but...
 cm_undo=4
 cm_redo=5
-# Variables
+
 cc_last_flag = ""
 cc_last_flag_1 = ""
 
@@ -66,10 +83,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def terminate(self):
 		super(GlobalPlugin, self).terminate()
-		# Removing the NVDA configurations section
 		gui.settingsDialogs.NVDASettingsDialog.categoryClasses.remove(ClipSpeakSettingsPanel)
 
 	# Script functions:
+
 	@script( 
 		# Translators: Message to be announced during Keyboard Help 
 		description = _("Cut selected item to clipboard, if appropriate."), 
@@ -81,6 +98,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		log.debug("Processing input gesture.")
 		if self.process_input(gesture):
 			return
+		sleep(0.010)
 		log.debug("Speaking message.")
 		self.speak_appropriate_message(cm_cut)
 
@@ -95,6 +113,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		log.debug("Processing input gesture.")
 		if self.process_input(gesture):
 			return
+		sleep(0.010)
 		log.debug("Speaking message.")
 		self.speak_appropriate_message(cm_copy)
 
@@ -145,32 +164,27 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		log.debug("Evaluating possible gestures.")
 		scripts=[]
 		maps=[inputCore.manager.userGestureMap, inputCore.manager.localeGestureMap]
-
 		log.debug("Found gesture mapping: \r"%maps)
+
 		log.debug("Enumerating scripts for these maps.")
 		for map in maps:
 			log.debug("Enumerating gestures for map %r"%map)
 			for identifier in gesture.identifiers:
 				log.debug("Enumerating scripts for gesture %r"%identifier)
 				scripts.extend(map.getScriptsForGesture(identifier))
-
 		log.debug("Found scripts: %r"%scripts)
 
 		focus=api.getFocusObject()
 		log.debug("Examining focus: %r"%focus)
 		tree=focus.treeInterceptor
 		log.debug("Examining tree interceptor: %r"%tree)
-
 		log.debug("Checking tree interceptor state.")
 		if tree and tree.isReady:
-
 			log.debug("Tree interceptor in use. Retrieving scripts for the interceptor.")
 			func=scriptHandler._getObjScript(tree, gesture, scripts)
 			log.debug("Examining object: %r"%func)
-
 			log.debug("Examining function attributes.")
 			if func and (not tree.passThrough or getattr(func,"ignoreTreeInterceptorPassThrough",False)):
-
 				log.debug("This gesture is already handled elsewhere. Executing associated function.")
 				func(tree)
 				return True
@@ -184,9 +198,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				return True 
 		log.debug("Nothing associated here. Pass straight to the system.")
 		gesture.send()
-		# To gave time to allow clipboard to be updated...
-		time.sleep(0.010)
 		return False
+		api.getClipData()
 
 	def speak_appropriate_message(self, cm_flag):
 		cc_flag = self.examine_focus()
@@ -195,79 +208,72 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		if cc_flag==cc_none:
 			return
 		elif cc_flag == cc_text:
-			# Pick the text suitable to the content.
+			# Pick a word suitable to the content.
 			try:
 				text = api.getClipData()
-			except OSError:
-				# Was not possible to read the clipboard...
-				text = ""
-			if len(text) == 0:
-				# No text selected, so do not announce nothing...
-				return
-			elif len(text) <= 500:
-				# Announce the text selected...
-				text = text
+				if len(text) < 500:
+					text = text
+				else:
+					text = _("%s characters")%len(text)
 				word1 = _(text)
-			else:
-				# Announce only the number of characters since they are many...
-				text = _("%s characters")%len(text)
-				word1 = _(text)
-		elif cc_flag==cc_file:
+			except:
+				pass #text = ""
+		elif cc_flag == (cc_file or cc_file1):
 			# Translators: A single word representing a file.
 			word=_("file")
+
 		elif cc_flag==cc_list:
 			# Translators: A single word representing an item in a list.
 			word=_("item")
 
 		# Decide what will be announced...
-		if config.conf["clipspeak"]["announce"]:
-			# To announce only the operation...
+		if config.conf[Addon.name]["announce"]:
 			word = word1 = ""
 
 		# Validate and speak.
 		log.debug("Validating clipboard mode: %r"%cm_flag)
+
 		if cm_flag==cm_undo and self.can_undo(cc_flag):
 			# Translators: Message to speak when undoing.
 			ui.message(_("Undo"))
+
 		if cm_flag==cm_redo and self.can_redo(cc_flag):
 			# Translators: A message spoken when redoing a previously undone operation.
 			ui.message(_("Redo"))
+
 		if cm_flag==cm_cut and self.can_cut(cc_flag):
 			if cc_flag == cc_text:
 				# Translators: A message to speak when cutting text to the clipboard.
-				ui.message(_("Cut %s")%(": "+word1))
-			elif cc_flag == cc_file1:
-				# Cut not possible
-				pass
+				ui.message(_("Cut %s")%word1)
 			else:
 				# Translators: A message to speak when cutting an item to the clipboard.
-				ui.message(_("Cut %s")%(" "+word))
+				ui.message(_("Cut %s")%word)
+			if cc_flag == cc_file1:
+				pass
 
 		if cm_flag==cm_copy and self.can_copy(cc_flag):
 			if cc_flag == cc_text:
 				# Translators: A message spoken when copying text to the clipboard.
-				ui.message(_("Copy %s")%(": "+word1))
-			elif cc_flag == cc_file1:
-				# Copy not possible
-				pass
+				ui.message(_("Copy %s")%word1)
 			else:
 				# Translators: A message spoken when copying to the clipboard.
-				ui.message(_("Copy %s")%(" "+word))
+				ui.message(_("Copy %s")%word)
+			#if cc_flag == cc_file1:
+				#pass
 
 		if cm_flag==cm_paste and self.can_paste(cc_flag):
 			if cc_flag == cc_text:
 				# Translators: A message spoken when pasting text from the clipboard.
-				ui.message(_("Pasted %s")%(": "+word1))
+				ui.message(_("Pasted %s")%word1)
 			else:
 				# Translators: A message spoken when pasting from the clipboard.
-				ui.message(_("Pasted %s")%(" "+word))
+				ui.message(_("Pasted %s")%word)
 
 	def examine_focus(self):
 		global cc_last_flag, cc_last_flag_1
 		cc_last_flag_1 = cc_last_flag
 		focus=api.getFocusObject()
 		if not focus:
-			# No focus so no operation possible
 			cc_last_flag = cc_none
 			return cc_none
 		log.debug("Examining focus object: %r"%focus)
@@ -275,13 +281,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		states=focus.states
 
 		# Check for an explorer/file browser window.
+		# Todo: Is this an accurate method?
 		if (focus.windowClassName == "DirectUIHWND"):
 			if  controlTypes.STATE_SELECTED in states:
-				# File is selected so possible to be copied...
 				cc_last_flag = cc_file
 				return cc_file
 			elif  controlTypes.STATE_SELECTABLE in states:
-				# File is selectable so only possible to past
 				cc_last_flag = cc_file1
 				return cc_file1
 
@@ -293,7 +298,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		# Check if we're looking at text.
 		elif (controlTypes.STATE_EDITABLE or controlTypes.STATE_MULTILINE) in states:
 			if controlTypes.STATE_READONLY in states:
-				# Read only. Only possible to copy...
 				cc_last_flag = cc_read_only_text
 				return cc_read_only_text
 			else:
@@ -305,7 +309,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		# For some reason, not all controls have an editable state, even when they clearly are.
 		elif focus.role == controlTypes.ROLE_EDITABLETEXT:
 			if controlTypes.STATE_READONLY in states:
-				# Read only. Only possible to copy...
 				cc_last_flag = cc_read_only_text
 				return cc_read_only_text
 			else:
@@ -327,22 +330,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			log.debug("Control type would not suggest clipboard operations.")
 			cc_last_flag = cc_none
 			return cc_none
-
-	def isSelectedText(self):
-		# this function  specifies if a certain text is selected or not
-		# and if it is, returns text selected.
-		obj=api.getFocusObject()
-		treeInterceptor=obj.treeInterceptor
-		if hasattr(treeInterceptor,'TextInfo') and not treeInterceptor.passThrough:
-			obj=treeInterceptor
-		try:
-			info=obj.makeTextInfo(textInfos.POSITION_SELECTION)
-		except (RuntimeError, NotImplementedError, LookupError):
-			info=None
-		if not info or info.isCollapsed:
-			return False
-		else:
-			return info.text.strip()
 
 	# Validation functions: In case we need to extend the script to allow more control/window types etc.
 	# Todo: Can we check a control to see if it enables these operations? For instance whether a list enables copy or a text field allows select all?
@@ -366,11 +353,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def can_copy(self, cc_flag):
 		# Todo: Validate the control and make sure there is something that could potentially be copied.
-		# Check if some text is selected
-		selection = self.isSelectedText()
-		if cc_flag == cc_text:
-			if not selection:
-				return False
 		if cc_last_flag == cc_file1:
 			return False
 		return True
@@ -421,9 +403,25 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				cc_flag = cc_list
 				return True
 
+	# Define an object of type clipboard_monitor that will keep track of the clipboard for us.
+	__clipboard = clipboard_monitor.clipboard_monitor()
+
 
 if globalVars.appArgs.secure:
 	# Override the global plugin to disable it.
 	GlobalPlugin = globalPluginHandler.GlobalPlugin
 
 
+class ClipSpeakSettingsPanel(gui.settingsDialogs.SettingsPanel):
+	# Translators: Title of the ClipSpeak settings dialog in the NVDA settings.
+	title = _("ClipSpeak")
+
+	def makeSettings(self, settingsSizer):
+		sHelper = gui.guiHelper.BoxSizerHelper(self, sizer = settingsSizer)
+
+		# Translators: Checkbox name in the configuration dialog
+		self.announceWnd = sHelper.addItem(wx.CheckBox(self, label=_("Announce only copy/cut/paste")))
+		self.announceWnd.SetValue(config.conf[Addon.name]["announce"])
+
+	def onSave (self):
+		config.conf[Addon.name]["announce"] = self.announceWnd.GetValue()

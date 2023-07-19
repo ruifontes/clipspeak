@@ -1,30 +1,27 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the 'clipspeak' package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Clipspeack v1.1\n"
+"Project-Id-Version: 'clipspeak' '2023.05.13'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2023-07-19 02:33+0100\n"
-"PO-Revision-Date: 2023-07-19 02:42+0100\n"
-"Last-Translator: \n"
-"Language-Team: Equipe brasileira de tradução: Abel Passos\n"
-"Language: pt_BR\n"
+"PO-Revision-Date: 2023-07-19 02:36+0100\n"
+"Last-Translator: Kostadin Kolev <k_kolev1985@mail.bg>\n"
+"Language-Team: \n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.3.2\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../../globalPlugins/clipspeak\n"
-"X-Poedit-SearchPath-0: __init__.py\n"
-"X-Poedit-SearchPath-1: clipboard_monitor.py\n"
 
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:92
 msgid "Cut selected item to clipboard, if appropriate."
-msgstr "Corte o item selecionado para a área de transferência, se possível."
+msgstr "Изрязване на избрания елемент в клипборда, ако е приложимо."
 
 #. Translators: Name of the section in "Input gestures" dialog.
 #: addon\globalPlugins\clipspeak\__init__.py:94
@@ -33,52 +30,52 @@ msgstr "Corte o item selecionado para a área de transferência, se possível."
 #: addon\globalPlugins\clipspeak\__init__.py:138
 #: addon\globalPlugins\clipspeak\__init__.py:152
 msgid "Clipboard"
-msgstr "Área de transferência\\"
+msgstr "Клипборд"
 
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:107
 msgid "Copy selected item to clipboard, if appropriate."
-msgstr "Copie o item selecionado para a área de transferência, se possível."
+msgstr "Копиране на избрания елемент в клипборда, ако е приложимо."
 
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:122
 msgid "Paste item from clipboard, if appropriate."
-msgstr "Cole o item da área de transferência, se possível."
+msgstr "Поставяне на избрания елемент от клипборда, ако е приложимо."
 
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:136
 msgid "Undo operation."
-msgstr "Operação desfazer."
+msgstr "Отмяна на операцията."
 
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:150
 msgid "Redo operation."
-msgstr "Operação refazer."
+msgstr "Повтаряне на операцията."
 
 #: addon\globalPlugins\clipspeak\__init__.py:217
 #, python-format
 msgid "%s characters"
-msgstr "%s carateres"
+msgstr "%s знака"
 
 #. Translators: A single word representing a file.
 #: addon\globalPlugins\clipspeak\__init__.py:223
 msgid "file"
-msgstr "arquivo ou pasta"
+msgstr "файл"
 
 #. Translators: A single word representing an item in a list.
 #: addon\globalPlugins\clipspeak\__init__.py:227
 msgid "item"
-msgstr "item"
+msgstr "елемент"
 
 #. Translators: Message to speak when undoing.
 #: addon\globalPlugins\clipspeak\__init__.py:238
 msgid "Undo"
-msgstr "Desfazer"
+msgstr "Отмяна"
 
 #. Translators: A message spoken when redoing a previously undone operation.
 #: addon\globalPlugins\clipspeak\__init__.py:242
 msgid "Redo"
-msgstr "Refazer"
+msgstr "Повтаряне"
 
 #. Translators: A message to speak when cutting text to the clipboard.
 #. Translators: A message to speak when cutting an item to the clipboard.
@@ -86,7 +83,7 @@ msgstr "Refazer"
 #: addon\globalPlugins\clipspeak\__init__.py:250
 #, python-format
 msgid "Cut %s"
-msgstr "%s cortado"
+msgstr "Изрязване %s"
 
 #. Translators: A message spoken when copying text to the clipboard.
 #. Translators: A message spoken when copying to the clipboard.
@@ -94,7 +91,7 @@ msgstr "%s cortado"
 #: addon\globalPlugins\clipspeak\__init__.py:260
 #, python-format
 msgid "Copy %s"
-msgstr "%s copiado"
+msgstr "Копиране %s"
 
 #. Translators: A message spoken when pasting text from the clipboard.
 #. Translators: A message spoken when pasting from the clipboard.
@@ -102,68 +99,43 @@ msgstr "%s copiado"
 #: addon\globalPlugins\clipspeak\__init__.py:270
 #, python-format
 msgid "Pasted %s"
-msgstr "%s colado"
+msgstr "Поставяне %s"
 
 #. Translators: Title of the ClipSpeak settings dialog in the NVDA settings.
 #: addon\globalPlugins\clipspeak\__init__.py:418
 msgid "ClipSpeak"
-msgstr "ClipSpeak"
+msgstr "Изговаряне на клипборда"
 
 #. Translators: Checkbox name in the configuration dialog
 #: addon\globalPlugins\clipspeak\__init__.py:424
 msgid "Announce only copy/cut/paste"
-msgstr "Anunciar apenas copiar/cortar/colar"
+msgstr "Докладвай само копиране/изрязване/поставяне"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on
 #. to be shown on installation and add-on information found in Add-ons Manager.
 #: buildVars.py:23
 msgid "Clipspeak"
-msgstr "Clipspeak"
+msgstr "Изговаряне на клипборда"
 
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 #: buildVars.py:26
 msgid "Add-on to speak clipboard information."
-msgstr "Complemento para falar informações da área de transferência."
+msgstr "Добавка за изговаряне на действия, свързани с клипборда."
 
-#, python-format
-#~ msgid "Cut: %s"
-#~ msgstr "Cortado: %s"
-
-#, python-format
+#, fuzzy, python-format
+#~| msgid "Copy %s"
 #~ msgid "Copy: %s"
-#~ msgstr "Copiado: %s"
+#~ msgstr "Копиране %s"
 
-#, python-format
+#, fuzzy, python-format
+#~| msgid "Pasted %s"
 #~ msgid "Pasted: %s"
-#~ msgstr "Colado: %s"
+#~ msgstr "Поставяне %s"
 
-#~ msgid "Check for updates at startup"
-#~ msgstr "Verificar se há atualizações na inicialização"
+#~ msgid "NVDAExtensionGlobalPlugin has been detected on your system. In order for Clipspeak to work without conflicts, this feature must be disabled. Otherwise Clipspeake will not work. Would you like to disable this feature now?"
+#~ msgstr "Добавката \"NVDAExtensionGlobalPlugin\" е открита във вашата система. За да работи Clipspeak без конфликти, тази функция трябва да бъде деактивирана. В противен случай Clipspeake няма да работи. Искате ли да деактивирате тази функция сега?"
 
-#~ msgid ""
-#~ "It is available a new version of this add-on.\n"
-#~ " Do you want to update?"
-#~ msgstr ""
-#~ "Está disponível uma nova versão deste complemento.\n"
-#~ "Quer actualizar?"
-
-#~ msgid ""
-#~ "This new version of this add-on is not compatible with your version of NVDA.\n"
-#~ " The update process will be terminated."
-#~ msgstr ""
-#~ "Esta nova versão deste complemento não é compatível com sua versão da NVDA.\n"
-#~ " O processo de atualização será encerrado."
-
-#~ msgid "Select all."
-#~ msgstr "Selecionar tudo."
-
-#~ msgid "text"
-#~ msgstr "texto"
-
-#~ msgid "Select All"
-#~ msgstr "Selecionar tudo"
-
-#~ msgid "No change."
-#~ msgstr "Não modificado."
+#~ msgid "Running NVDAExtensionGlobalPlugin detected"
+#~ msgstr "Открито е работещо копие на NVDAExtensionGlobalPlugin"
