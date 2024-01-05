@@ -3,7 +3,7 @@
 
 ## bilgiler
 * Yazarlar: "Rui Fontes, Ângelo Abrantes, Abel Passos Júnior ve Noelia Ruiz Martínez'in işbirliği, Damien Sykes-Lindley'in çalışmasına dayanmaktadır.
-* 19/07/2023'de güncellendi
+* 04/01/2024'de güncellendi
 * [Kararlı sürümü indirin][1]
 * Uyumluluk: NVDA sürüm 2019.3 ve sonrası.
 
@@ -18,9 +18,10 @@ Varsayılan olarak Panoyu seslendir'in hareketleri, Windows'un İngilizce sürü
 * CTRL+Y: yinele
 * CTRL+X: Kes
 * CTRL+C: kopyala
+* CTRL+SHIFT+C: Copy file path (Only in Windows 11)
 * CTRL+V: Yapıştır
 
 Windows sürümünüzde bu görevler için yaygın olarak kullanılan kısayollar bunlar değilse, Pano kategorisi altındaki giriş hareketleri yapılandırmasında bu hareketleri yeniden eşleştirmeniz gerekir.  
 
 
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2023.07.19/clipspeak-2023.07.19.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2024.01.04/clipspeak-2024.01.04.nvda-addon

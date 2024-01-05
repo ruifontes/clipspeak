@@ -3,7 +3,7 @@
 
 ## Informazioni
 * Autori: "Rui Fontes, Ângelo Abrantes, Abel Passos Júnior e la collaborazione di Noelia Ruiz Martínez, basato sul lavoro di Damien Sykes-Lindley
-* Aggiornato il 19/07/2023
+* Aggiornato il 04/01/2024
 * Download [versione stabile][1]
 * Compatibilità: NVDA versione 2019.3 e successive
 
@@ -17,9 +17,10 @@ Inizialmente, la mappatura delle gestures di ClipSpeak è quella della versione 
 * CTRL+Y: Ripeti
 * CTRL+X: Taglia
 * CTRL+C: Copia
+* CTRL+SHIFT+C: Copy file path (Only in Windows 11)
 * CTRL+V: Incolla
 
 Se questi tasti non corrispondono con la versione di Windows che si sta utilizzando, è possibile modificarle andando in gesti e tasti di immissione, categoria Appunti.
 
 ## Aggiornamento automati
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2023.07.19/clipspeak-2023.07.19.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2024.01.04/clipspeak-2024.01.04.nvda-addon

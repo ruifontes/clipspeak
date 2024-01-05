@@ -3,7 +3,7 @@
 
 ## Інформація
 * Автори: "Rui Fontes, Ângelo Abrantes, Abel Passos Júnior and colaboration of Noelia Ruiz Martínez, based on the work of Damien Sykes-Lindley
-* Оновлено 19/07/2023
+* Оновлено 04/01/2024
 * Завантажити [стабільну версію][1]
 * Сумісність: NVDA 2019.3 і новіші
 
@@ -17,9 +17,10 @@ Clipspeak — це додаток, який дозволяє NVDA автомат
 * CTRL+Y: Повторити
 * CTRL+X: Вирізати
 * CTRL+C: Копіювати
+* CTRL+SHIFT+C: Copy file path (Only in Windows 11)
 * CTRL+V: Вставити
 
 Якщо ці комбінації не використовуються для виконання таких завдань у вашій версії Windows, вам доведеться їх перепризначити у конфігурації жестів вводу, категорія «Буфер обміну».
 
 
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2023.07.19/clipspeak-2023.07.19.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2024.01.04/clipspeak-2024.01.04.nvda-addon
