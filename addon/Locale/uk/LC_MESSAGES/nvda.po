@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 'clipspeak' '2022.04'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2024-01-04 21:31+0000\n"
-"PO-Revision-Date: 2024-01-04 23:59+0000\n"
+"POT-Creation-Date: 2024-01-16 21:15+0200\n"
+"PO-Revision-Date: 2024-01-16 21:17+0200\n"
 "Last-Translator: Group of Ukrainian blind people\n"
 "Language-Team: Ukrainian Language Team\n"
 "Language: uk_UA\n"
@@ -47,10 +47,8 @@ msgstr "Скопіювати вибраний елемент до буфера �
 
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:131
-#, fuzzy
-#| msgid "Copy selected item to clipboard, if appropriate."
 msgid "Copy path of selected file to clipboard, if appropriate."
-msgstr "Скопіювати вибраний елемент до буфера обміну, якщо підтримується."
+msgstr "Скопіювати шлях вибраного файлу в буфер обміну, якщо підтримується."
 
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:146
