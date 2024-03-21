@@ -3,7 +3,7 @@
 
 ## Информация
 * Authors: Rui Fontes, Ângelo Abrantes, Abel Passos Júnior и със сътрудничеството на Noelia Ruiz Martínez, базирано на работата на Damien Sykes-Lindley
-* Обновено на 04.01.2024 г.
+* Обновено на 21.03.2024 г.
 * Изтегляне на [стабилна версия][1]
 * Съвместимост с NVDA: 2019.3 и по-нови версии
 
@@ -21,4 +21,4 @@
 * Control+V: Поставяне
 Ако това не са командите, използвани за тези задачи във вашата версия на Windows, ще трябва да преназначите тези жестове в прозореца за настройка на жестовете на въвеждане на NVDA, в категорията \"Клипборд\".
 
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2024.01.04/clipspeak-2024.01.04.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2024.03.21/clipspeak-2024.03.21.nvda-addon

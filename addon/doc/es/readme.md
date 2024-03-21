@@ -3,7 +3,7 @@
 
 ## Informaciones
 * Autores: "Rui Fontes, Ângelo Abrantes, Abel Passos Júnior y colaboración de Noelia Ruiz Martínez, basado en el trabajo de Damien Sykes-Lindley
-* Actualizado el 04/01/2024
+* Actualizado el 21/03/2024
 * Descargar [versión estable][1]
 * Compatibilidad: NVDA versión 2019.3 y posteriores
 
@@ -23,4 +23,4 @@ De forma predeterminada, los gestos de Clipspeak se asignan a los que se usan co
 Si estos no son los accesos directos comúnmente utilizados para estas tareas en su versión de Windows, deberá reasignar estos gestos en la configuración de gestos de entrada en la categoría Portapapeles.
 
 
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2024.01.04/clipspeak-2024.01.04.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2024.03.21/clipspeak-2024.03.21.nvda-addon

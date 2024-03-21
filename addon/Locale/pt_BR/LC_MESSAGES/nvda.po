@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Clipspeack v1.1\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2024-01-04 21:31+0000\n"
-"PO-Revision-Date: 2024-01-04 23:51+0000\n"
+"POT-Creation-Date: 2024-03-21 02:04+0000\n"
+"PO-Revision-Date: 2024-03-21 02:11+0000\n"
 "Last-Translator: \n"
 "Language-Team: Equipe brasileira de tradução: Abel Passos\n"
 "Language: pt_BR\n"
@@ -22,63 +22,65 @@ msgstr ""
 "X-Poedit-SearchPath-1: clipboard_monitor.py\n"
 
 #. Translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:101
+#: addon\globalPlugins\clipspeak\__init__.py:102
 msgid "Cut selected item to clipboard, if appropriate."
 msgstr "Corte o item selecionado para a área de transferência, se possível."
 
 #. Translators: Name of the section in "Input gestures" dialog.
-#: addon\globalPlugins\clipspeak\__init__.py:103
-#: addon\globalPlugins\clipspeak\__init__.py:118
-#: addon\globalPlugins\clipspeak\__init__.py:133
-#: addon\globalPlugins\clipspeak\__init__.py:148
-#: addon\globalPlugins\clipspeak\__init__.py:163
-#: addon\globalPlugins\clipspeak\__init__.py:177
+#: addon\globalPlugins\clipspeak\__init__.py:104
+#: addon\globalPlugins\clipspeak\__init__.py:119
+#: addon\globalPlugins\clipspeak\__init__.py:134
+#: addon\globalPlugins\clipspeak\__init__.py:155
+#: addon\globalPlugins\clipspeak\__init__.py:170
+#: addon\globalPlugins\clipspeak\__init__.py:184
 msgid "Clipboard"
 msgstr "Área de transferência\\"
 
 #. Translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:116
+#: addon\globalPlugins\clipspeak\__init__.py:117
 msgid "Copy selected item to clipboard, if appropriate."
 msgstr "Copie o item selecionado para a área de transferência, se possível."
 
 #. Translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:131
+#: addon\globalPlugins\clipspeak\__init__.py:132
 msgid "Copy path of selected file to clipboard, if appropriate."
-msgstr "Copie o caminho do arquivo selecionado para a área de transferência, se possível."
+msgstr ""
+"Copie o caminho do arquivo selecionado para a área de transferência, se "
+"possível."
 
 #. Translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:146
+#: addon\globalPlugins\clipspeak\__init__.py:153
 msgid "Paste item from clipboard, if appropriate."
 msgstr "Cole o item da área de transferência, se possível."
 
 #. Translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:161
+#: addon\globalPlugins\clipspeak\__init__.py:168
 msgid "Undo operation."
 msgstr "Operação desfazer."
 
 #. Translators: Message to be announced during Keyboard Help
-#: addon\globalPlugins\clipspeak\__init__.py:175
+#: addon\globalPlugins\clipspeak\__init__.py:182
 msgid "Redo operation."
 msgstr "Operação refazer."
 
 #. Translators: A single word representing an item in a list.
-#: addon\globalPlugins\clipspeak\__init__.py:397
+#: addon\globalPlugins\clipspeak\__init__.py:404
 msgid "item"
 msgstr "item"
 
 #. Translators: Message to speak when undoing.
-#: addon\globalPlugins\clipspeak\__init__.py:402
+#: addon\globalPlugins\clipspeak\__init__.py:409
 msgid "Undo"
 msgstr "Desfazer"
 
 #. Translators: A message spoken when redoing a previously undone operation.
-#: addon\globalPlugins\clipspeak\__init__.py:406
+#: addon\globalPlugins\clipspeak\__init__.py:413
 msgid "Redo"
 msgstr "Refazer"
 
 #. Translators: A message to speak when cutting text or files/folders to the clipboard.
-#: addon\globalPlugins\clipspeak\__init__.py:411
-#: addon\globalPlugins\clipspeak\__init__.py:414
+#: addon\globalPlugins\clipspeak\__init__.py:418
+#: addon\globalPlugins\clipspeak\__init__.py:421
 #, python-format
 msgid "Cut %s"
 msgstr "%s cortado"
@@ -86,29 +88,41 @@ msgstr "%s cortado"
 #. Translators: A message spoken when copying text to the clipboard.
 #. Translators: A message spoken when copying files/folders to the clipboard.
 #. Translators: A message spoken when copying the path of a file.
-#: addon\globalPlugins\clipspeak\__init__.py:422
-#: addon\globalPlugins\clipspeak\__init__.py:428
-#: addon\globalPlugins\clipspeak\__init__.py:437
+#: addon\globalPlugins\clipspeak\__init__.py:429
+#: addon\globalPlugins\clipspeak\__init__.py:435
+#: addon\globalPlugins\clipspeak\__init__.py:444
 #, python-format
 msgid "Copy %s"
 msgstr "%s copiado"
 
 #. Translators: A message spoken when pasting text from the clipboard.
-#: addon\globalPlugins\clipspeak\__init__.py:445
 #: addon\globalPlugins\clipspeak\__init__.py:452
+#: addon\globalPlugins\clipspeak\__init__.py:459
 #, python-format
 msgid "Pasted %s"
 msgstr "%s colado"
 
 #. Translators: Title of the ClipSpeak settings dialog in the NVDA settings.
-#: addon\globalPlugins\clipspeak\__init__.py:461
+#: addon\globalPlugins\clipspeak\__init__.py:468
 msgid "ClipSpeak"
 msgstr "ClipSpeak"
 
 #. Translators: Checkbox name in the configuration dialog
-#: addon\globalPlugins\clipspeak\__init__.py:467
+#: addon\globalPlugins\clipspeak\__init__.py:474
 msgid "Announce only copy/cut/paste"
 msgstr "Anunciar apenas copiar/cortar/colar"
+
+#: addon\globalPlugins\clipspeak\clipboardMonitor.py:51
+msgid "file/folder "
+msgstr "arquivo/pasta"
+
+#: addon\globalPlugins\clipspeak\clipboardMonitor.py:55
+msgid "files/folders: "
+msgstr "arquivos/pastas:"
+
+#: addon\globalPlugins\clipspeak\clipboardMonitor.py:57
+msgid " files/folders"
+msgstr " arquivos/pastas"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on
@@ -153,10 +167,12 @@ msgstr "Complemento para falar informações da área de transferência."
 #~ "Quer actualizar?"
 
 #~ msgid ""
-#~ "This new version of this add-on is not compatible with your version of NVDA.\n"
+#~ "This new version of this add-on is not compatible with your version of "
+#~ "NVDA.\n"
 #~ " The update process will be terminated."
 #~ msgstr ""
-#~ "Esta nova versão deste complemento não é compatível com sua versão da NVDA.\n"
+#~ "Esta nova versão deste complemento não é compatível com sua versão da "
+#~ "NVDA.\n"
 #~ " O processo de atualização será encerrado."
 
 #~ msgid "Select all."

@@ -1,0 +1,29 @@
+{
+	"addonId": "clipspeak",
+	"displayName": "Clipspeak",
+	"URL": "",
+	"description": "Add-on to speak clipboard information.",
+	"sha256": "d32438035332568b1d716b0ca0a80e1860e75193c9c8b149c3c2703bd512b5ac",
+	"homepage": "https://github.com/ruifontes/clipspeak",
+	"addonVersionName": "2024.03.21",
+	"addonVersionNumber": {
+		"major": 2024,
+		"minor": 3,
+		"patch": 21
+	},
+	"minNVDAVersion": {
+		"major": 2019,
+		"minor": 3,
+		"patch": 0
+	},
+	"lastTestedVersion": {
+		"major": 2024,
+		"minor": 1,
+		"patch": 0
+	},
+	"channel": "stable",
+	"publisher": "",
+	"sourceURL": "https://github.com/ruifontes/clipspeak",
+	"license": "GPL 2",
+	"licenseURL": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+}

@@ -19,6 +19,7 @@ import ui
 import config
 import api
 import inputCore
+from keyboardHandler import KeyboardInputGesture
 import scriptHandler
 from scriptHandler import script
 import comtypes.client
@@ -134,12 +135,18 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		gesture="kb:Control+Shift+C")
 	def script_copyAsPath(self, gesture):
 		# Script activated: Copy as path
-		# Processing input gesture.
-		if self.process_input(gesture):
-			return
-		sleep(0.03)
-		# Speaking message.
-		self.speak_appropriate_message(cm_copyAsPath)
+		focus=api.getFocusObject()
+		print(focus.windowClassName)
+		if focus.windowClassName != "DirectUIHWND":
+			pass
+		else:
+			print("Testado!")
+			# Processing input gesture.
+			if self.process_input(gesture):
+				return
+			sleep(0.03)
+			# Speaking message.
+			self.speak_appropriate_message(cm_copyAsPath)
 
 	@script( 
 		# Translators: Message to be announced during Keyboard Help 

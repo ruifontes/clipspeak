@@ -11,6 +11,8 @@
 import wx
 import os
 from time import sleep
+import addonHandler
+addonHandler.initTranslation()
 
 
 class clipboardMonitor(object):
@@ -22,7 +24,7 @@ class clipboardMonitor(object):
 		try:
 			clipboard.Open()
 		except error:
-			sleep(0.05)
+			sleep(0.10)
 			clipboard.Open()
 		try:
 			if clipboard.IsSupported(wx.DataFormat(wx.DF_FILENAME)):
@@ -46,13 +48,13 @@ class clipboardMonitor(object):
 
 		if isinstance(comparison, list):  # Assuming list of file paths
 			if len(comparison) == 1:
-				text = "file/folder " + os.path.basename(comparison[0])
+				text = _("file/folder ") + os.path.basename(comparison[0])
 			elif len(comparison) <= 3:
 				file_names = [os.path.basename(path) for path in comparison]
 				names = "; ".join(file_names)
-				text = "files/folders: " + names
+				text = _("files/folders: ") + names
 			else:
-				text = str(len(comparison)) + " files/folders"
+				text = str(len(comparison)) + _(" files/folders")
 			return 1, text
 		elif isinstance(comparison, str):
 			if len(comparison) < 1024:
