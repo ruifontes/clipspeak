@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 'clipspeak' '2022.04'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2024-03-21 02:04+0000\n"
-"PO-Revision-Date: 2024-03-21 02:13+0000\n"
+"PO-Revision-Date: 2024-05-12 11:50+0300\n"
 "Last-Translator: Group of Ukrainian blind people\n"
 "Language-Team: Ukrainian Language Team\n"
 "Language: ru\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:102
 msgid "Cut selected item to clipboard, if appropriate."
-msgstr "Вырезать выделенный элемент в буфер обмена, если поддерживается."
+msgstr "Вырезает выделенный элемент в буфер обмена, если поддерживается."
 
 #. Translators: Name of the section in "Input gestures" dialog.
 #: addon\globalPlugins\clipspeak\__init__.py:104
@@ -37,29 +37,28 @@ msgstr "Буфер обмена"
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:117
 msgid "Copy selected item to clipboard, if appropriate."
-msgstr "Скопировать выделенный элемент в буфер обмена, если поддерживается."
+msgstr "Копирует выделенный элемент в буфер обмена, если поддерживается."
 
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:132
-#, fuzzy
-#| msgid "Copy selected item to clipboard, if appropriate."
 msgid "Copy path of selected file to clipboard, if appropriate."
-msgstr "Скопировать выделенный элемент в буфер обмена, если поддерживается."
+msgstr ""
+"Копирует путь к выделенному элементу в буфер обмена, если поддерживается."
 
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:153
 msgid "Paste item from clipboard, if appropriate."
-msgstr "Вставить элемент с буфера обмена, если поддерживается."
+msgstr "Вставляет элемент из буфера обмена, если поддерживается."
 
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:168
 msgid "Undo operation."
-msgstr "Отменить действие."
+msgstr "Отменяет действие."
 
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:182
 msgid "Redo operation."
-msgstr "Повторить действие."
+msgstr "Повторяет действие."
 
 #. Translators: A single word representing an item in a list.
 #: addon\globalPlugins\clipspeak\__init__.py:404
@@ -112,15 +111,15 @@ msgstr "Проговаривать только скопирован/вырез�
 
 #: addon\globalPlugins\clipspeak\clipboardMonitor.py:51
 msgid "file/folder "
-msgstr ""
+msgstr "файл/папка "
 
 #: addon\globalPlugins\clipspeak\clipboardMonitor.py:55
 msgid "files/folders: "
-msgstr ""
+msgstr "файлы/папки: "
 
 #: addon\globalPlugins\clipspeak\clipboardMonitor.py:57
 msgid " files/folders"
-msgstr ""
+msgstr " файлы/папки"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on
@@ -133,7 +132,7 @@ msgstr "Clipspeak"
 #. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 #: buildVars.py:26
 msgid "Add-on to speak clipboard information."
-msgstr "Дополнение, произносящее информацию для буфера обмена."
+msgstr "Дополнение, произносящее информацию буфера обмена."
 
 #, python-format
 #~ msgid "%s characters"
