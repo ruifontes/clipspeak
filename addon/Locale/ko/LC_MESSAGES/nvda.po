@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Clipspeak-Korean\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2024-01-04 21:31+0000\n"
-"PO-Revision-Date: 2024-10-09 14:57+0900\n"
+"PO-Revision-Date: 2024-10-09 22:52+0900\n"
 "Last-Translator: Ungjin Jsoeph Park <ungjin312@kakao.com>\n"
 "Language-Team: ungjin312@kakao.com\n"
 "Language: ko_KR\n"
@@ -77,7 +77,7 @@ msgstr "작업 다시 실행"
 #: addon\globalPlugins\clipspeak\__init__.py:414
 #, python-format
 msgid "Cut %s"
-msgstr "다음을 잘라냄: %s"
+msgstr "잘라내기: %s"
 
 #. Translators: A message spoken when copying text to the clipboard.
 #. Translators: A message spoken when copying files/folders to the clipboard.
@@ -87,14 +87,14 @@ msgstr "다음을 잘라냄: %s"
 #: addon\globalPlugins\clipspeak\__init__.py:437
 #, python-format
 msgid "Copy %s"
-msgstr "다음을 복사함: %s"
+msgstr "복사: %s"
 
 #. Translators: A message spoken when pasting text from the clipboard.
 #: addon\globalPlugins\clipspeak\__init__.py:445
 #: addon\globalPlugins\clipspeak\__init__.py:452
 #, python-format
 msgid "Pasted %s"
-msgstr "다음을 붙여넣음: %s"
+msgstr "붙여넣기: %s"
 
 #. Translators: Title of the ClipSpeak settings dialog in the NVDA settings.
 #: addon\globalPlugins\clipspeak\__init__.py:461
