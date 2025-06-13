@@ -134,25 +134,3 @@ msgstr "Изговаряне на клипборда"
 msgid "Add-on to speak clipboard information."
 msgstr "Добавка за изговаряне на действия, свързани с клипборда."
 
-#, python-format
-#~ msgid "%s characters"
-#~ msgstr "%s знака"
-
-#~ msgid "file"
-#~ msgstr "файл"
-
-#, fuzzy, python-format
-#~| msgid "Copy %s"
-#~ msgid "Copy: %s"
-#~ msgstr "Копиране %s"
-
-#, fuzzy, python-format
-#~| msgid "Pasted %s"
-#~ msgid "Pasted: %s"
-#~ msgstr "Поставяне %s"
-
-#~ msgid "NVDAExtensionGlobalPlugin has been detected on your system. In order for Clipspeak to work without conflicts, this feature must be disabled. Otherwise Clipspeake will not work. Would you like to disable this feature now?"
-#~ msgstr "Добавката \"NVDAExtensionGlobalPlugin\" е открита във вашата система. За да работи Clipspeak без конфликти, тази функция трябва да бъде деактивирана. В противен случай Clipspeake няма да работи. Искате ли да деактивирате тази функция сега?"
-
-#~ msgid "Running NVDAExtensionGlobalPlugin detected"
-#~ msgstr "Открито е работещо копие на NVDAExtensionGlobalPlugin"

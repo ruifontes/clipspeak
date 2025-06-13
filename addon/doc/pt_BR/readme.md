@@ -22,4 +22,4 @@ Pode escolher entre Anunciar apenas copiar/cortar/colar ou também o que está a
 Se esses não forem os atalhos comumente usados  para essas tarefas em sua versão do Windows, você precisará remapear esses gestos na configuração de gestos de entrada na categoria Área de transferência.
 
 
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2024.03.21/clipspeak-2024.03.21.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2025.06.13/clipspeak-2025.06.13.nvda-addon

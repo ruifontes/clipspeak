@@ -21,4 +21,4 @@
 * Control+V: Поставяне
 Ако това не са командите, използвани за тези задачи във вашата версия на Windows, ще трябва да преназначите тези жестове в прозореца за настройка на жестовете на въвеждане на NVDA, в категорията \"Клипборд\".
 
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2024.03.21/clipspeak-2024.03.21.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2025.06.13/clipspeak-2025.06.13.nvda-addon

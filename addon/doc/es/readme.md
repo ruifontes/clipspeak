@@ -23,4 +23,4 @@ De forma predeterminada, los gestos de Clipspeak se asignan a los que se usan co
 Si estos no son los accesos directos comúnmente utilizados para estas tareas en su versión de Windows, deberá reasignar estos gestos en la configuración de gestos de entrada en la categoría Portapapeles.
 
 
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2024.03.21/clipspeak-2024.03.21.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2025.06.13/clipspeak-2025.06.13.nvda-addon

@@ -24,4 +24,4 @@ Varsayılan olarak Panoyu seslendir'in hareketleri, Windows'un İngilizce sürü
 Windows sürümünüzde bu görevler için yaygın olarak kullanılan kısayollar bunlar değilse, Pano kategorisi altındaki giriş hareketleri yapılandırmasında bu hareketleri yeniden eşleştirmeniz gerekir.  
 
 
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2024.03.21/clipspeak-2024.03.21.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2025.06.13/clipspeak-2025.06.13.nvda-addon

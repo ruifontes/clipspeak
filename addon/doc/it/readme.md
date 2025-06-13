@@ -23,4 +23,4 @@ Inizialmente, la mappatura delle gestures di ClipSpeak è quella della versione 
 Se questi tasti non corrispondono con la versione di Windows che si sta utilizzando, è possibile modificarle andando in gesti e tasti di immissione, categoria Appunti.
 
 ## Aggiornamento automati
-[1]: https://github.com/ruifontes/clipspeak/releases/download/2024.03.21/clipspeak-2024.03.21.nvda-addon
+[1]: https://github.com/ruifontes/clipspeak/releases/download/2025.06.13/clipspeak-2025.06.13.nvda-addon

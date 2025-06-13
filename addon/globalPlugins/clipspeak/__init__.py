@@ -92,6 +92,9 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		# Adding a NVDA configurations section
 		gui.NVDASettingsDialog.categoryClasses.append(ClipSpeakSettingsPanel)
 
+		# Creating an instance
+		self.dataInstance = clipboardMonitor.clipboardMonitor()
+
 	def terminate(self):
 		super(GlobalPlugin, self).terminate()
 		gui.settingsDialogs.NVDASettingsDialog.categoryClasses.remove(ClipSpeakSettingsPanel)
@@ -102,13 +105,14 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		description=_("Cut selected item to clipboard, if appropriate."), 
 		# Translators: Name of the section in "Input gestures" dialog. 
 		category=_("Clipboard"), 
-		gesture="kb:Control+X")
+		gesture="kb:Control+X"
+	)
 	def script_cut(self, gesture):
 		# Script activated: Cut.
 		# Processing input gesture.
 		if self.process_input(gesture):
 			return
-		sleep(0.03)
+		sleep(0.06)
 		# Speaking message.
 		self.speak_appropriate_message(cm_cut)
 
@@ -117,13 +121,14 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		description=_("Copy selected item to clipboard, if appropriate."), 
 		# Translators: Name of the section in "Input gestures" dialog. 
 		category=_("Clipboard"), 
-		gesture="kb:Control+C")
+		gesture="kb:Control+C"
+	)
 	def script_copy(self, gesture):
 		# Script activated: Copy.
 		# Processing input gesture.
 		if self.process_input(gesture):
 			return
-		sleep(0.03)
+		sleep(0.06)
 		# Speaking message.
 		self.speak_appropriate_message(cm_copy)
 
@@ -132,34 +137,34 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		description=_("Copy path of selected file to clipboard, if appropriate."), 
 		# Translators: Name of the section in "Input gestures" dialog. 
 		category=_("Clipboard"), 
-		gesture="kb:Control+Shift+C")
+		gesture="kb:Control+Shift+C"
+	)
 	def script_copyAsPath(self, gesture):
 		# Script activated: Copy as path
 		focus=api.getFocusObject()
-		print(focus.windowClassName)
-		if focus.windowClassName != "DirectUIHWND":
-			pass
-		else:
-			print("Testado!")
+		if focus.windowClassName == "DirectUIHWND" or "SysListView32":
 			# Processing input gesture.
 			if self.process_input(gesture):
 				return
-			sleep(0.03)
+			sleep(0.06)
 			# Speaking message.
 			self.speak_appropriate_message(cm_copyAsPath)
+		else:
+			pass
 
 	@script( 
 		# Translators: Message to be announced during Keyboard Help 
 		description=_("Paste item from clipboard, if appropriate."), 
 		# Translators: Name of the section in "Input gestures" dialog. 
 		category=_("Clipboard"), 
-		gesture="kb:Control+V")
+		gesture="kb:Control+V"
+	)
 	def script_paste(self, gesture):
 		# Script activated: Paste.
 		# Processing input gesture.
 		if self.process_input(gesture):
 			return
-		sleep(0.03)
+		sleep(0.06)
 		# Speaking message.
 		self.speak_appropriate_message(cm_paste)
 
@@ -168,7 +173,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		description=_("Undo operation."),
 		# Translators: Name of the section in "Input gestures" dialog. 
 		category=_("Clipboard"), 
-		gesture="kb:Control+Z")
+		gesture="kb:Control+Z"
+	)
 	def script_undo(self, gesture):
 		# Script activated: Undo.
 		# Processing input gesture.
@@ -182,7 +188,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		description=_("Redo operation."),
 		# Translators: Name of the section in "Input gestures" dialog.
 		category=_("Clipboard"), 
-		gesture="kb:Control+Y")
+		gesture="kb:Control+Y"
+	)
 	def script_redo(self, gesture):
 		# Script activated: Redo.
 		# Processing input gesture.
@@ -203,8 +210,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			for identifier in gesture.identifiers:
 				# Enumerating scripts for gesture
 				scripts.extend(map.getScriptsForGesture(identifier))
-		# Found scripts
 
+		# Found scripts
 		focus=api.getFocusObject()
 		tree=focus.treeInterceptor
 		# Checking tree interceptor state.
@@ -216,7 +223,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			if func and (not tree.passThrough or getattr(func,"ignoreTreeInterceptorPassThrough",False)):
 				# This gesture is already handled elsewhere.
 				# Executing associated function.
-				func(tree)
+				if api.getFocusObject().appModule.appName == "outlook":
+					api.getFocusObject().WinwordSelectionObject.Copy()
+					return False
+				else:
+					func(tree)
 				return True
 		else: 
 			# Tree interceptor not in use. Checking the NVDA object.
@@ -224,8 +235,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			if func: 
 				# This gesture is already handled elsewhere.
 				# Executing associated function.
-				func(focus) 
-				return True 
+				if api.getFocusObject().appModule.appName == "winword":
+					api.getFocusObject().WinwordSelectionObject.Paste()
+				elif api.getFocusObject().appModule.appName == "outlook":
+					api.getFocusObject().WinwordSelectionObject.Paste()
+				else:
+					func(focus) 
+				return False
 		# Nothing associated here. Pass straight to the system.
 		gesture.send()
 		return False
@@ -249,6 +265,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			elif  controlTypes.STATE_SELECTABLE in states:
 				cc_last_flag = cc_file1
 				return cc_file1
+		if focus.windowClassName == "SysListView32":
+			if  controlTypes.STATE_SELECTED in states:
+				cc_last_flag = cc_file
+				return cc_file
+			elif  controlTypes.STATE_SELECTABLE in states:
+				cc_last_flag = cc_file1
+				return cc_file1
 
 		# Check for a list item.
 		elif focus.role == (controlTypes.ROLE_LISTITEM or controlTypes.ROLE_TABLEROW) and controlTypes.STATE_SELECTED in states:
@@ -256,7 +279,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			return cc_list
 
 		# Check if we're looking at text.
-		elif (controlTypes.STATE_EDITABLE or controlTypes.STATE_MULTILINE) in states:
+		elif controlTypes.STATE_MULTILINE in states:
 			if controlTypes.STATE_READONLY in states:
 				cc_last_flag = cc_read_only_text
 				return cc_read_only_text
@@ -266,8 +289,18 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				cc_last_flag = cc_text
 				return cc_text
 
-		# For some reason, not all controls have an editable state, even when they clearly are.
+		elif controlTypes.STATE_EDITABLE in states:
+			if controlTypes.STATE_READONLY in states:
+				cc_last_flag = cc_read_only_text
+				return cc_read_only_text
+			else:
+				# Otherwise, we're just an ordinary text field.
+				# Field seems to be editable.
+				cc_last_flag = cc_text
+				return cc_text
+
 		elif focus.role == controlTypes.ROLE_EDITABLETEXT:
+		# For some reason, not all controls have an editable state, even when they clearly are.
 			if controlTypes.STATE_READONLY in states:
 				cc_last_flag = cc_read_only_text
 				return cc_read_only_text
@@ -276,15 +309,16 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				# Field seems to be editable.")
 				cc_last_flag = cc_text
 				return cc_text
-		elif focus.windowClassName == "RichEditD2DPT":
+		elif focus.windowClassName == "RichEditD2DPT" or "Scintilla":
 			cc_last_flag = cc_text
 			return cc_text
 		elif focus.windowClassName == "_WwG":
-			if api.getFocusObject().appModule.appName == "winword":
-				cc_last_flag = cc_read_only_text
-				return cc_read_only_text
-			cc_last_flag = cc_text
-			return cc_text
+			if api.getFocusObject().appModule.appName == "winword" or "outlook":
+				cc_last_flag = cc_none
+				return cc_none
+			else:
+				cc_last_flag = cc_text
+				return cc_text
 		# Todo: Other control types we need to check?
 		else:
 			# Control type would not suggest clipboard operations.
@@ -304,31 +338,16 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		return True
 
 	def can_cut(self, cc_flag):
-		if cc_flag==cc_read_only_text:
-			return False
-		# Todo: Validate the control and make sure there is something that could potentially be cut.
-		if cc_last_flag == cc_file1:
-			return False
-		return True
+		changed = self.dataInstance.clipboardHasChanged()
+		return changed
 
 	def can_copy(self, cc_flag):
-		# Todo: Validate the control and make sure there is something that could potentially be copied.
-		if cc_last_flag == cc_file1:
-			return False
-		return True
+		changed = self.dataInstance.clipboardHasChanged()
+		return changed
 
 	def can_copyAsPath(self, cc_flag):
-		# Validate we are in File explorer and make sure there is a file selected.
-		focus = api.getFocusObject()
-		# Retrieve the control's states and roles.
-		states=focus.states
-		if focus.windowClassName == "DirectUIHWND":
-			if  controlTypes.STATE_SELECTED in states:
-				cc_last_flag = cc_file
-				return True
-			elif  controlTypes.STATE_SELECTABLE in states:
-				cc_last_flag = cc_file1
-				return False
+		changed = self.dataInstance.clipboardHasChanged()
+		return changed
 
 	def can_paste(self, cc_flag):
 		global cc_last_flag, cc_last_flag_1
@@ -337,7 +356,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		if cc_last_flag_1 == cc_none:
 			cc_flag = cc_none
 			return False
-		elif cc_last_flag_1 == cc_text:
+		elif cc_last_flag_1 == cc_text or cc_read_only_text:
 			cc_flag = cc_text
 			# Check if we're looking at text.
 			if (controlTypes.STATE_EDITABLE or controlTypes.STATE_MULTILINE) in states:
@@ -347,7 +366,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					# Otherwise, we're just an ordinary text field.
 					# Field seems to be editable.")
 					return True
-			# For some reason, not all controls have an editable state, even when they clearly are.
+			# For some reason, not all controls have an editable state, even when 		they clearly are.
 			elif focus.role == controlTypes.ROLE_EDITABLETEXT:
 				if controlTypes.STATE_READONLY in states:
 					return False
@@ -355,7 +374,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					return True
 			elif controlTypes.STATE_READONLY in states:
 				return False
-			elif focus.windowClassName == "RichEditD2DPT":
+			elif focus.windowClassName == "RichEditD2DPT" or "Scintilla":
 				return True
 			elif focus.windowClassName == "_WwG":
 				return True
@@ -364,7 +383,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			cc_flag = cc_file
 			# Check for an explorer/file browser window.
 			# Todo: Is this an accurate method?
-			if focus.windowClassName == "DirectUIHWND":
+			if (focus.windowClassName == "DirectUIHWND" or "SysListView32") and focus.appModule.appName == "explorer":
 				if  (focus.role==controlTypes.ROLE_LISTITEM) and controlTypes.STATE_SELECTABLE in states:
 					return True
 				return False
@@ -374,7 +393,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			cc_flag = cc_file
 			# Check for an explorer/file browser window.
 			# Todo: Is this an accurate method?
-			if focus.windowClassName == "DirectUIHWND":
+			if (focus.windowClassName == "DirectUIHWND" or "SysListView32") and focus.appModule.appName == "explorer":
 				if  (focus.role==controlTypes.ROLE_LISTITEM) and controlTypes.STATE_SELECTABLE in states:
 					return True
 				return False
@@ -388,17 +407,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def speak_appropriate_message(self, cm_flag):
 		cc_flag = self.examine_focus()
-		# Choose the appropriate message.
-		dataInstance = clipboardMonitor.clipboardMonitor()
-		type, word = dataInstance.validClipboardData()
 		if cc_flag==cc_none:
 			return
-		elif cc_flag == cc_text:
-			if config.conf[Addon.name]["announce"]:
-				word = ""
-		elif cc_flag == cc_file:
-			if config.conf[Addon.name]["announce"]:
-				word = ""
 		elif cc_flag==cc_list:
 			# Translators: A single word representing an item in a list.
 			word=_("item")
@@ -413,23 +423,45 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			ui.message(_("Redo"))
 
 		elif cm_flag==cm_cut and self.can_cut(cc_flag):
+			focus = api.getFocusObject()
+			states=focus.states
+			if  controlTypes.STATE_READONLY in states:
+				return
+			# Choose the appropriate message.
+			type, word = self.dataInstance.validClipboardData()
+			if config.conf[Addon.name]["announce"]:
+				word = ""
 			if cc_flag == cc_text:
-				# Translators: A message to speak when cutting text or files/folders to the clipboard.
+				# Translators: A message to speak when cutting text to the clipboard.
 				ui.message(_("Cut %s")%word)
 			elif cc_flag == cc_file:
-				# Translators: A message to speak when cutting text or files/folders to the clipboard.
+				# Translators: A message to speak when cutting files/folders to the clipboard.
 				ui.message(_("Cut %s")%word)
 			elif cc_flag == cc_file1:
 				pass
 
 		elif cm_flag==cm_copy and self.can_copy(cc_flag):
+			# Choose the appropriate message.
+			type, word = self.dataInstance.validClipboardData()
+			if config.conf[Addon.name]["announce"]:
+				word = ""
 			if cc_flag == cc_text:
 				if type == 2:
 					# Translators: A message spoken when copying text to the clipboard.
 					ui.message(_("Copy %s")%word)
 				else:
 					pass
-			if cc_flag == cc_file:
+			if cc_flag == cc_read_only_text:
+				# Choose the appropriate message.
+				type, word = self.dataInstance.validClipboardData()
+				if config.conf[Addon.name]["announce"]:
+					word = ""
+				if type == 2:
+					# Translators: A message spoken when copying text to the clipboard.
+					ui.message(_("Copy %s")%word)
+				else:
+					pass
+			elif cc_flag == cc_file:
 				if type == 1:
 					# Translators: A message spoken when copying files/folders to the clipboard.
 					ui.message(_("Copy %s")%word)
@@ -439,6 +471,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				pass
 
 		elif cm_flag==cm_copyAsPath and self.can_copyAsPath(cc_flag):
+			# Choose the appropriate message.
+			type, word = self.dataInstance.validClipboardData()
+			if config.conf[Addon.name]["announce"]:
+				word = ""
 			if cc_flag == cc_file:
 				# Translators: A message spoken when copying the path of a file.
 				ui.message(_("Copy %s")%word)
@@ -446,6 +482,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				pass
 
 		elif cm_flag==cm_paste and self.can_paste(cc_flag):
+			# Choose the appropriate message.
+			type, word = self.dataInstance.validClipboardData()
+			if config.conf[Addon.name]["announce"]:
+				word = ""
 			if cc_flag == cc_text:
 				if type == 2:
 					# Translators: A message spoken when pasting text from the clipboard.
@@ -476,4 +516,3 @@ class ClipSpeakSettingsPanel(gui.settingsDialogs.SettingsPanel):
 
 	def onSave (self):
 		config.conf[Addon.name]["announce"] = self.announceWnd.GetValue()
-

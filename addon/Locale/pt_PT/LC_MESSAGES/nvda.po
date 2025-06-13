@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Clipspeack v1.1\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2024-03-21 02:04+0000\n"
-"PO-Revision-Date: 2024-03-21 02:12+0000\n"
+"PO-Revision-Date: 2024-03-22 17:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: Equipe brasileira de tradução: Abel Passos\n"
 "Language: pt_BR\n"
@@ -114,11 +114,11 @@ msgstr "Anunciar apenas copiar/cortar/colar"
 
 #: addon\globalPlugins\clipspeak\clipboardMonitor.py:51
 msgid "file/folder "
-msgstr "ficheiro/pasta"
+msgstr "ficheiro/pasta "
 
 #: addon\globalPlugins\clipspeak\clipboardMonitor.py:55
 msgid "files/folders: "
-msgstr "ficheiros/pastas:"
+msgstr "ficheiros/pastas: "
 
 #: addon\globalPlugins\clipspeak\clipboardMonitor.py:57
 msgid " files/folders"

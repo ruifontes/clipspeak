@@ -11,19 +11,24 @@
 import wx
 import os
 from time import sleep
+from datetime import datetime
 import addonHandler
+# Starting translation process
 addonHandler.initTranslation()
+
+textContent = ""
+tempContent = ""
 
 
 class clipboardMonitor(object):
-	def __init__(self):
-		self.getClipboard()
+	#def __init__(self):
+		#self.getClipboard()
 
 	def getClipboard(self):
 		clipboard = wx.Clipboard.Get()
 		try:
 			clipboard.Open()
-		except error:
+		except Exception:
 			sleep(0.10)
 			clipboard.Open()
 		try:
@@ -42,6 +47,7 @@ class clipboardMonitor(object):
 			clipboard.Close()
 
 	def validClipboardData(self):
+#		sleep(0.09)
 		comparison = self.getClipboard()
 		if comparison is None:
 			return 0, None
@@ -62,3 +68,16 @@ class clipboardMonitor(object):
 			else:
 				text = "%s characters" % len(comparison)
 			return 2, text
+
+	def clipboardHasChanged(self):
+		global textContent, tempContent
+		tempContent = str(self.getClipboard()) + datetime.now().strftime("%H:%M:%S.%f")
+		if tempContent != textContent:
+			self.resetTextContent()
+			return True
+		else:
+			return False
+
+	def resetTextContent(self):
+		global textContent, tempContent
+		textContent = tempContent
