@@ -253,6 +253,20 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		if not focus:
 			cc_last_flag = cc_none
 			return cc_none
+		# Check for terminal/console windows - Ctrl+C means "interrupt process", not "copy"
+		if focus.windowClassName in ("ConsoleWindowClass", "PseudoConsoleWindow", "VirtualConsoleClass"):
+			cc_last_flag = cc_none
+			return cc_none
+		if hasattr(controlTypes, "ROLE_TERMINAL") and focus.role == controlTypes.ROLE_TERMINAL:
+			cc_last_flag = cc_none
+			return cc_none
+		# VS Code / xterm.js terminal: focused element is a hidden textarea (xterm-helper-textarea)
+		try:
+			if getattr(focus, 'IA2Attributes', {}).get('class') == 'xterm-helper-textarea':
+				cc_last_flag = cc_none
+				return cc_none
+		except Exception:
+			pass
 		# Examining focus object
 		# Retrieve the control's states and roles.
 		states=focus.states
@@ -309,7 +323,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				# Field seems to be editable.")
 				cc_last_flag = cc_text
 				return cc_text
-		elif focus.windowClassName == "RichEditD2DPT" or "Scintilla":
+		elif focus.windowClassName in ("RichEditD2DPT", "Scintilla"):
 			cc_last_flag = cc_text
 			return cc_text
 		elif focus.windowClassName == "_WwG":
@@ -338,12 +352,16 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		return True
 
 	def can_cut(self, cc_flag):
-		changed = self.dataInstance.clipboardHasChanged()
-		return changed
+		if cc_flag in (cc_file, cc_file1):
+			type, _ = self.dataInstance.validClipboardData()
+			return type == 1
+		return self.dataInstance.clipboardHasChanged()
 
 	def can_copy(self, cc_flag):
-		changed = self.dataInstance.clipboardHasChanged()
-		return changed
+		if cc_flag in (cc_file, cc_file1):
+			type, _ = self.dataInstance.validClipboardData()
+			return type == 1
+		return self.dataInstance.clipboardHasChanged()
 
 	def can_copyAsPath(self, cc_flag):
 		changed = self.dataInstance.clipboardHasChanged()
@@ -374,7 +392,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					return True
 			elif controlTypes.STATE_READONLY in states:
 				return False
-			elif focus.windowClassName == "RichEditD2DPT" or "Scintilla":
+			elif focus.windowClassName in ("RichEditD2DPT", "Scintilla"):
 				return True
 			elif focus.windowClassName == "_WwG":
 				return True
