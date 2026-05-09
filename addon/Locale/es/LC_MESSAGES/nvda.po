@@ -39,10 +39,8 @@ msgstr "Copiar elemento seleccionado en el portapapeles, si es apropiado."
 
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:132
-#, fuzzy
-#| msgid "Copy selected item to clipboard, if appropriate."
 msgid "Copy path of selected file to clipboard, if appropriate."
-msgstr "Copiar elemento seleccionado en el portapapeles, si es apropiado."
+msgstr "Copiar ruta del archivo seleccionado en el portapapeles, si es apropiado."
 
 #. Translators: Message to be announced during Keyboard Help
 #: addon\globalPlugins\clipspeak\__init__.py:153
@@ -67,12 +65,12 @@ msgstr "elemento"
 #. Translators: Message to speak when undoing.
 #: addon\globalPlugins\clipspeak\__init__.py:409
 msgid "Undo"
-msgstr "Desacer"
+msgstr "Deshacer"
 
 #. Translators: A message spoken when redoing a previously undone operation.
 #: addon\globalPlugins\clipspeak\__init__.py:413
 msgid "Redo"
-msgstr "Reacer"
+msgstr "Rehacer"
 
 #. Translators: A message to speak when cutting text or files/folders to the clipboard.
 #: addon\globalPlugins\clipspeak\__init__.py:418
@@ -96,7 +94,7 @@ msgstr "Copiar %s"
 #: addon\globalPlugins\clipspeak\__init__.py:459
 #, python-format
 msgid "Pasted %s"
-msgstr "Pegar %s"
+msgstr "Pegado %s"
 
 #. Translators: Title of the ClipSpeak settings dialog in the NVDA settings.
 #: addon\globalPlugins\clipspeak\__init__.py:468
@@ -110,15 +108,15 @@ msgstr "Anunciar solo cortar/copiar/pegar"
 
 #: addon\globalPlugins\clipspeak\clipboardMonitor.py:51
 msgid "file/folder "
-msgstr ""
+msgstr "archivo/carpeta "
 
 #: addon\globalPlugins\clipspeak\clipboardMonitor.py:55
 msgid "files/folders: "
-msgstr ""
+msgstr "archivos/carpetas: "
 
 #: addon\globalPlugins\clipspeak\clipboardMonitor.py:57
 msgid " files/folders"
-msgstr ""
+msgstr " archivos/carpetas"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on
