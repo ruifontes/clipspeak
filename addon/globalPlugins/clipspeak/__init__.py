@@ -333,6 +333,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			else:
 				cc_last_flag = cc_text
 				return cc_text
+		elif focus.windowClassName == "SALFRAME":
+			if focus.role == controlTypes.ROLE_TABLECELL:
+				cc_last_flag = cc_text
+				return cc_text
+
 		# Todo: Other control types we need to check?
 		else:
 			# Control type would not suggest clipboard operations.
@@ -396,6 +401,9 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				return True
 			elif focus.windowClassName == "_WwG":
 				return True
+			elif focus.windowClassName == "SALFRAME":
+				if focus.role == controlTypes.ROLE_TABLECELL:
+					return True
 
 		elif cc_last_flag_1 == cc_file:
 			cc_flag = cc_file
